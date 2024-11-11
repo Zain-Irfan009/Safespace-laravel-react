@@ -24,7 +24,7 @@ export default function DashboardPage() {
 
             try {
                 const response = await fetch(
-                    `https://phpstack-1359771-5009369.cloudwaysapps.com/api/dashboard?search=${searchTerm}`,
+                    `https://phpstack-1359771-5005546.cloudwaysapps.com/api/dashboard?search=${searchTerm}`,
                     {
                         method: "GET",
                         headers: {

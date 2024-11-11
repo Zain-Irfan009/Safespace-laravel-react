@@ -27,7 +27,7 @@ export default function Login() {
 
         try {
             const response = await fetch(
-                "https://phpstack-1359771-5009369.cloudwaysapps.com/api/login",
+                "https://phpstack-1359771-5005546.cloudwaysapps.com/api/login",
                 {
                     method: "POST",
                     headers: {

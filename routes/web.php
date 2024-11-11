@@ -30,53 +30,21 @@ use Stripe\Stripe;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/nanto-haseeb', function () {
-    $options = new Options();
-    $options->setVersion('2020-01');
-
-// Create the client and session
-    $api = new BasicShopifyAPI($options);
-    $api->setSession(new Session('speed-booster-testing.myshopify.com', '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'));
-//        return $api->rest('GET','/admin/cart/1996242f8f5e91f3f1fa1f8d73f0a90a.json');
-    $resp = $api->rest('GET', '/admin/webhooks.json');
-    dd($resp);
-});
-
-
-
-Route::get('/custom-script.js', function () {
-//    dd('yes');
-    $html = view('customize-script');
-    return response($html)
-        ->header('Content-Type', 'text/javascript');
-});
-
-
-Route::get('/script.js', function () {
-//    dd('yes');
-    $html = view('script');
-    return response($html)
-        ->header('Content-Type', 'text/javascript');
-});
-
-Route::get('cart-create', [WebhookController::class, 'cart_webhook']);
-
-Route::get('/file-upload', function () {
-    return view('file');
-});
 
 
 
 
-Route::domain('{subdomain}.' . 'checkoutrepublic.com')->group(function () {
-    Route::get('/checkout', [SubdomainController::class, 'index']);
-    Route::get('/thank-you-page', [SubdomainController::class, 'index_thankyou']);
-});
+
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/checkout', [SubdomainController::class, 'CheckoutDomainChecker']);
-Route::get('/thank-you-page', [SubdomainController::class, 'CheckoutDomainChecker']);
-//Route::view('/{path?}', 'welcome')
-//    ->where('path', '.*')
-//    ->name('react');
+
+Route::view('/{path?}', 'welcome')
+    ->where('path', '.*')
+    ->name('react');

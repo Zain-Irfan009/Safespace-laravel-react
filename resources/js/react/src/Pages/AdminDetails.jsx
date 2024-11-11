@@ -62,7 +62,7 @@ function AdminDetails() {
 
             try {
                 const response = await fetch(
-                    `https://phpstack-1359771-5009369.cloudwaysapps.com/api/dashboard?search=${searchTerm}`,
+                    `https://phpstack-1359771-5005546.cloudwaysapps.com/api/dashboard?search=${searchTerm}`,
                     {
                         method: "GET",
                         headers: {
@@ -96,7 +96,7 @@ function AdminDetails() {
         }
         try {
             const response = await fetch(
-                `https://phpstack-1359771-5009369.cloudwaysapps.com/api/store-details/${id}`,
+                `https://phpstack-1359771-5005546.cloudwaysapps.com/api/store-details/${id}`,
                 {
                     method: "GET",
                     headers: {
@@ -339,7 +339,7 @@ function AdminDetails() {
         const token = getAuthToken();
         try {
             const response = await fetch(
-                "https://phpstack-1359771-5009369.cloudwaysapps.com/api/save-store-data",
+                "https://phpstack-1359771-5005546.cloudwaysapps.com/api/save-store-data",
                 {
                     method: "POST",
                     headers: {

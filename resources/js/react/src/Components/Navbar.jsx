@@ -168,7 +168,7 @@ import {
 } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Logo from "../assets/img/Logo.jpeg";
+import Logo from "../assets/Images/logo.png"
 import axios from "axios";
 import { removeAuthToken, getAuthToken } from "../Unit-api/CookieUtils";
 import { ToastContainer, toast } from "react-toastify";
@@ -200,7 +200,7 @@ export default function Navbar({
 
     try {
       const response = await axios.post(
-        "https://phpstack-1359771-5009369.cloudwaysapps.com/api/logout",
+        "https://phpstack-1359771-5005546.cloudwaysapps.com/api/logout",
         {},
         {
           headers: {

@@ -45,7 +45,7 @@ const Popup = ({
 
     try {
       const response = await fetch(
-        "https://phpstack-1359771-5009369.cloudwaysapps.com/api/update-verification-detail-status",
+        "https://phpstack-1359771-5005546.cloudwaysapps.com/api/update-verification-detail-status",
         {
           method: "POST",
           headers: {
