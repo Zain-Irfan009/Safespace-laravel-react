@@ -1,11 +1,12 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { getAuthToken } from "../Unit-api/CookieUtils";
 
-const ProtectedRoute = ({ children }) => {
-  const token = getAuthToken();
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+    if (!isAuthenticated) {
+        return <Navigate to="/login" />;
+    }
 
-  return token ? children : <Navigate to="/login" />;
+    return children;
 };
 
 export default ProtectedRoute;

@@ -200,7 +200,7 @@ export default function Navbar({
 
     try {
       const response = await axios.post(
-        "https://phpstack-362288-4960243.cloudwaysapps.com/api/logout",
+        "https://phpstack-1359771-5009369.cloudwaysapps.com/api/logout",
         {},
         {
           headers: {
