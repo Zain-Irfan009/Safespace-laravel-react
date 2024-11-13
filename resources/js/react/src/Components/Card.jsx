@@ -5,7 +5,13 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const StatusBadge = ({ status }) => {
+    console.log("Status1:", status);
+
     const displayStatus = status === null ? "In Progress" : status;
+
+    // Log the resolved display status
+    console.log("Display Status2:", displayStatus);
+
     const badgeStyles =
         displayStatus === "Fail"
             ? "bg-red-100 text-red-800 border border-red-300"
@@ -66,14 +72,24 @@ const Card = ({
               </span>
                             <div
                                 className={`flex items-center space-x-2 ${
-                                    description.text === "Refund Rate:" ? "mr-10" : ""
+                                    description.text === "Refund Rate:" ||
+                                    description.text === "Ip address fake order:" ||
+                                    description.text === "Discount fake order:" ||
+                                    description.text === "Refund fake order:" ||
+                                    description.text === "Shipping address fake order:"
+                                        ? "mr-10"
+                                        : ""
                                 }`}
                             >
                                 {description.status !== "link" && (
                                     <>
                                         <StatusBadge status={description.status} />
 
-                                        {description.text !== "Refund Rate:" && (
+                                        {description.text !== "Refund Rate:" &&
+                                        description.text !== "Ip address fake order:" &&
+                                        description.text !== "Discount fake order:" &&
+                                        description.text !== "Refund fake order:" &&
+                                        description.text !== "Shipping address fake order:" ? (
                                             <button
                                                 onClick={() => {
                                                     onEdit(
@@ -87,13 +103,8 @@ const Card = ({
                                                 <PencilIcon className="h-4 w-4" />
                                                 {description.button}
                                             </button>
-                                        )}
+                                        ) : null}
                                     </>
-                                )}
-                                {description.status === "link" && (
-                                    <Link to="" className="hover:underline hover:text-indigo-500">
-                                        {description.text}
-                                    </Link>
                                 )}
                             </div>
                         </li>
@@ -115,24 +126,20 @@ const Card = ({
                     • {subDescription.text}
                   </span>
                                     <div className="flex items-center space-x-2">
-                                        {subDescription.status && (
-                                            <>
-                                                <StatusBadge status={subDescription.status} />
-                                                <button
-                                                    onClick={() =>
-                                                        onEdit(
-                                                            subDescription.text,
-                                                            subDescription.key,
-                                                            subDescription.status
-                                                        )
-                                                    }
-                                                    className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
-                                                >
-                                                    <PencilIcon className="h-4 w-4" />
-                                                    {subDescription.button}
-                                                </button>
-                                            </>
-                                        )}
+                                        <StatusBadge status={subDescription.status} />
+                                        <button
+                                            onClick={() =>
+                                                onEdit(
+                                                    subDescription.text,
+                                                    subDescription.key,
+                                                    subDescription.status
+                                                )
+                                            }
+                                            className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
+                                        >
+                                            <PencilIcon className="h-4 w-4" />
+                                            {subDescription.button}
+                                        </button>
                                     </div>
                                 </li>
                             ))}

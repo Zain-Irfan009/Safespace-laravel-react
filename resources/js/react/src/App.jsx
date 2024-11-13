@@ -1,4 +1,69 @@
-import React from "react";
+// import React, { useState, useEffect } from "react";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Navigate,
+// } from "react-router-dom";
+// import Login from "./Components/Login";
+// import DashboardPage from "./Pages/DashboardPage";
+// import AnalyticsPage from "./Pages/AnalyticsPage";
+// import ProtectedRoute from "./Unit-api/ProtectedRoute";
+// import { getAuthToken } from "./Unit-api/CookieUtils";
+// import AdminDetails from "./Pages/AdminDetails";
+// import Dashboard from "./Pages/Dashboard";
+
+// import Home from "./Web/Pages/Home";
+// import SafeSpaceStack from "./Web/Pages/SafeSpaceStack";
+// import BussinessDirectry from "./Web/Pages/BussinessDirectry";
+// import ApplyForVerifecation from "./Web/Pages/ApplyForVerifecation";
+
+// function App() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(
+//     getAuthToken() !== undefined
+//   );
+
+//   useEffect(() => {
+//     const token = getAuthToken();
+//     setIsAuthenticated(!!token);
+//   }, []);
+
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/safespacestack" element={<SafeSpaceStack />} />
+//         <Route path="/bussinessdirectry" element={<BussinessDirectry />} />
+//         <Route
+//           path="/applyforverifecation"
+//           element={<ApplyForVerifecation />}
+//         />
+//         <Route path="/admin/login" element={<Login />} />
+
+//         <Route
+//           path="/admin/"
+//           element={
+//             isAuthenticated ? (
+//               <ProtectedRoute isAuthenticated={isAuthenticated}>
+//                 <DashboardPage />
+//               </ProtectedRoute>
+//             ) : (
+//               <Navigate to="/admin/login" replace />
+//             )
+//           }
+//         >
+//           <Route path="dashboard" element={<Dashboard />} />
+//           <Route path=":id" element={<AdminDetails />} />
+//           <Route path=":id/analytics" element={<AnalyticsPage />} />
+//         </Route>
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+import React, { useState, useEffect } from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -12,14 +77,18 @@ import ProtectedRoute from "./Unit-api/ProtectedRoute";
 import { getAuthToken } from "./Unit-api/CookieUtils";
 import AdminDetails from "./Pages/AdminDetails";
 import Dashboard from "./Pages/Dashboard";
-
 import Home from "./Web/Pages/Home";
 import SafeSpaceStack from "./Web/Pages/SafeSpaceStack";
 import BussinessDirectry from "./Web/Pages/BussinessDirectry";
 import ApplyForVerifecation from "./Web/Pages/ApplyForVerifecation";
 
 function App() {
-    const isAuthenticated = getAuthToken();
+    const [isAuthenticated, setIsAuthenticated] = useState(getAuthToken());
+
+    useEffect(() => {
+        setIsAuthenticated(getAuthToken());
+    }, [getAuthToken()]);
+
     return (
         <Router>
             <Routes>
@@ -30,26 +99,42 @@ function App() {
                     path="/applyforverifecation"
                     element={<ApplyForVerifecation />}
                 />
-                <Route path="/login" element={<Login />} />
+
                 <Route
-                    path="/admin"
+                    path="/admin/login"
                     element={
-                        <ProtectedRoute isAuthenticated={isAuthenticated}>
-                            <DashboardPage />
-                        </ProtectedRoute>
+                        <Login
+                            setIsAuthenticated={setIsAuthenticated}
+                            isAuthenticated={isAuthenticated}
+                        />
+                    }
+                />
+
+                <Route
+                    path="/admin/"
+                    element={
+                        isAuthenticated ? (
+                            <ProtectedRoute isAuthenticated={isAuthenticated}>
+                                <DashboardPage />
+                            </ProtectedRoute>
+                        ) : (
+                            <Navigate to="/admin/login" replace />
+                        )
                     }
                 >
                     <Route path="dashboard" element={<Dashboard />} />
+
                     <Route path=":id" element={<AdminDetails />} />
                     <Route path=":id/analytics" element={<AnalyticsPage />} />
                 </Route>
-                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="*" element={<Login />} />
             </Routes>
         </Router>
     );
 }
 
 export default App;
+
 // import React from "react";
 // import {
 //   BrowserRouter as Router,
@@ -148,3 +233,67 @@ export default App;
 // export default App;
 // App.js
 //////////////////////////////////////////////////////////////
+// import React, { useEffect, useState } from "react";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Navigate,
+// } from "react-router-dom";
+// import Login from "./Components/Login";
+// import DashboardPage from "./Pages/DashboardPage";
+// import AnalyticsPage from "./Pages/AnalyticsPage";
+// import ProtectedRoute from "./Unit-api/ProtectedRoute";
+// import { getAuthToken } from "./Unit-api/CookieUtils";
+// import AdminDetails from "./Pages/AdminDetails";
+// import Dashboard from "./Pages/Dashboard";
+// import Home from "./Web/Pages/Home";
+// import SafeSpaceStack from "./Web/Pages/SafeSpaceStack";
+// import BussinessDirectry from "./Web/Pages/BussinessDirectry";
+// import ApplyForVerifecation from "./Web/Pages/ApplyForVerifecation";
+
+// function App() {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+//   useEffect(() => {
+//     // Check token and update authentication status on load
+//     const token = getAuthToken();
+//     setIsAuthenticated(!!token);
+//   }, []);
+
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/safespacestack" element={<SafeSpaceStack />} />
+//         <Route path="/bussinessdirectry" element={<BussinessDirectry />} />
+//         <Route
+//           path="/applyforverifecation"
+//           element={<ApplyForVerifecation />}
+//         />
+//         <Route
+//           path="/login"
+//           element={<Login setIsAuthenticated={setIsAuthenticated} />}
+//         />
+
+//         {/* Protected Routes */}
+//         <Route
+//           path="/admin/*"
+//           element={
+//             <ProtectedRoute isAuthenticated={isAuthenticated}>
+//               <DashboardPage>
+//                 <Routes>
+//                   <Route path="dashboard" element={<Dashboard />} />
+//                   <Route path=":id" element={<AdminDetails />} />
+//                   <Route path=":id/analytics" element={<AnalyticsPage />} />
+//                 </Routes>
+//               </DashboardPage>
+//             </ProtectedRoute>
+//           }
+//         />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;

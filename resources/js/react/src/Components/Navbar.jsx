@@ -217,7 +217,7 @@ export default function Navbar({
         });
 
         setTimeout(() => {
-          navigate("/admin/login");
+          navigate("/login");
         }, 3000);
       } else {
         toast.error("Logout failed. Please try again.", {

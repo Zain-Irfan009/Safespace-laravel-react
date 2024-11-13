@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { setAuthToken, getAuthToken } from "../Unit-api/CookieUtils";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { twMerge } from "tailwind-merge";
 
-export default function Login() {
-    const isAuthenticated = getAuthToken();
-
+export default function Login({ setIsAuthenticated, isAuthenticated }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const isAuthenticated = getAuthToken();
-        if (isAuthenticated) {
-            navigate("/admin/dashboard");
-        }
-    }, [navigate]);
+    if (isAuthenticated) {
+        return <Navigate to="/admin/dashboard" replace />;
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setErrorMessage("");
 
         try {
             const response = await fetch(
@@ -39,17 +35,18 @@ export default function Login() {
 
             if (response.ok) {
                 const data = await response.json();
+                console.log("Login response:", data);
                 setAuthToken(data?.data.token);
 
-                navigate("/admin/dashboard");
+                // Update the authentication state in App
+                setIsAuthenticated(true);
+
                 toast.success("Login successful!", {
                     position: "bottom-center",
-
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    progress: undefined,
                     theme: "light",
                     toastClassName: twMerge(
                         "bg-indigo-600 text-white p-3 rounded shadow-lg"
@@ -57,18 +54,17 @@ export default function Login() {
                     bodyClassName: twMerge("text-sm font-medium"),
                 });
 
-                setTimeout(() => {}, 1000);
+                setTimeout(() => {
+                    navigate("/admin/dashboard");
+                }, 1000);
             } else {
                 setErrorMessage("Login failed. Please check your credentials.");
-
                 toast.error("Login failed. Please check your credentials.", {
                     position: "bottom-center",
-
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    progress: undefined,
                     theme: "light",
                     toastClassName: twMerge(
                         "bg-indigo-600 text-white p-3 rounded shadow-lg"
@@ -79,15 +75,12 @@ export default function Login() {
         } catch (error) {
             console.error("Error during login:", error);
             setErrorMessage("An error occurred. Please try again.");
-
             toast.error("An error occurred. Please try again.", {
                 position: "bottom-center",
-
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                progress: undefined,
                 theme: "light",
                 toastClassName: twMerge(
                     "bg-indigo-600 text-white p-3 rounded shadow-lg"
@@ -98,8 +91,9 @@ export default function Login() {
             setLoading(false);
         }
     };
+
     return (
-        <div className="flex min-h-full mx-4  flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 ">
+        <div className="flex min-h-full mx-4 flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Sign in
