@@ -127,7 +127,7 @@ function App() {
                     <Route path=":id" element={<AdminDetails />} />
                     <Route path=":id/analytics" element={<AnalyticsPage />} />
                 </Route>
-                <Route path="*" element={<Login />} />
+                <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
             </Routes>
         </Router>
     );

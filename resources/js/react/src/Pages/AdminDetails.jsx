@@ -81,9 +81,9 @@ function AdminDetails() {
                 }
 
                 const data = await response.json();
-                const verification = setStores(data.stores);
-                setVerificationData(data.verification_data);
-                console.log("verification_data", data.verification_data);
+
+                setStores(data.stores);
+
                 console.log("Fetched stores data: ", data.stores);
             } catch (error) {
                 setError(error.message);
@@ -124,6 +124,9 @@ function AdminDetails() {
             const storeDetail = storeDetailData.store_detail;
             setStoreName(storeDetail?.store_name || "");
             setStoreDetails(storeDetail);
+            const verification = storeDetailData.verification_data;
+            setVerificationData(verification);
+            console.log("verificationdata", verification);
             console.log("Store details fetched: ", storeDetail);
             const transformedData = [
                 {
@@ -222,7 +225,7 @@ function AdminDetails() {
                         },
                         {
                             text: "Median delivery time:",
-                            status: storeDetail.median_delivery_time,
+                            status: storeDetail.product_reception_median_delivery_time,
                         },
                     ],
                 },
@@ -431,8 +434,9 @@ function AdminDetails() {
     };
 
     return (
-        <div className="px-4 sm:px-4 lg:px-14 bg-gray-100 flex-1 min-h-screen overflow-y-auto max-h-screen scrollbar-hidden">
-            <div className="flex items-center justify-between mb-8 mt-8">
+        // <div className="px-4 sm:px-4 lg:px-14 bg-gray-100 flex-1 min-h-screen overflow-y-auto max-h-screen scrollbar-hidden">
+        <div className="px-4  bg-gray-100 flex-1 min-h-screen ">
+            <div className="flex items-center justify-between mb-8 pt-8">
                 <h1 className="text-base font-bold text-gray-900 sm:text-xl md:text-2xl">
                     {showAnalytics ? "Analytics" : storeName}
                 </h1>
@@ -457,16 +461,7 @@ function AdminDetails() {
                 <>
                     {loading ? (
                         <>
-                            <Skeleton /> {/* General loading skeleton */}
-                            <div className="grid grid-cols-1 gap-4">
-                                {/* Skeletons for cards */}
-                                {Array.from({ length: 5 }).map((_, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-gray-300 h-32 rounded-lg animate-pulse"
-                                    ></div>
-                                ))}
-                            </div>
+                            <Skeleton />
                         </>
                     ) : cardData.length === 0 ? (
                         <div className="flex justify-center items-center w-full">
@@ -529,9 +524,9 @@ function AdminDetails() {
                     {detailData === "Domain Registration:" ? (
                         <div className="flex flex-col space-y-2 mt-5">
               <span>
-                <strong>• Updated Date:</strong>{" "}
-                  {storeDetails?.domain_details_updated_date ||
-                      "No update date available"}
+                <strong>• Registerer:</strong>{" "}
+                  {storeDetails?.domain_registerer ||
+                      "No registerer information available"}
               </span>
                             <span>
                 <strong>• Registered Date:</strong>{" "}
@@ -539,9 +534,9 @@ function AdminDetails() {
                                     "No registered date available"}
               </span>
                             <span>
-                <strong>• Registerer:</strong>{" "}
-                                {storeDetails?.domain_registerer ||
-                                    "No registerer information available"}
+                <strong>• Updated Date:</strong>{" "}
+                                {storeDetails?.domain_details_updated_date ||
+                                    "No update date available"}
               </span>
                         </div>
                     ) : (
@@ -609,6 +604,33 @@ function AdminDetails() {
                     ) : (
                         ""
                     )}
+                    {detailData === "Business Registration:" ? (
+                        <div className="flex flex-col space-y-2 mt-5">
+              <span>
+                <strong>• Bussiness Name:</strong>{" "}
+                  {verificationdata?.bussiness_name ||
+                      "No Bussiness Name available"}
+              </span>
+                            <span>
+                <strong>• Bussiness Type:</strong>{" "}
+                                {verificationdata?.bussiness_type ||
+                                    "No Bussiness Type available"}
+              </span>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                    {detailData === "Return Policy:" ? (
+                        <div className="flex flex-col space-y-2 mt-5">
+              <span>
+                <strong>• Returns Updated Date:</strong>{" "}
+                  {storeDetails?.returns_updated_date ||
+                      "No Returns Updated Date"}
+              </span>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </ModelPopup>
             )}
 
@@ -618,392 +640,3 @@ function AdminDetails() {
 }
 
 export default AdminDetails;
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import React, { useEffect, useState } from "react";
-// import { getAuthToken } from "../Unit-api/CookieUtils";
-// import { ToastContainer, toast } from "react-toastify";
-// import { twMerge } from "tailwind-merge";
-
-// import "react-toastify/dist/ReactToastify.css";
-// import EditPopup from "../Components/EditPopup";
-// import AnalyticsPage from "./AnalyticsPage";
-// import { Skeleton } from "../Components/Skeleton";
-
-// import CardContainer from "../Components/CardContainer";
-// import StatusForm from "../Components/StatusForm";
-// import ModelPopup from "../Components/ModelPopup";
-
-// function AdminDetails() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-//   const id = location?.pathname?.split("/").pop();
-//   const [cardData, setCardData] = useState([]);
-//   const [stores, setStores] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [showAnalytics, setShowAnalytics] = useState(false);
-//   const [approved, setApproved] = useState(false);
-//   const [denied, setDenied] = useState(false);
-//   const [pending, setPending] = useState(false);
-//   const [status, setStatus] = useState("");
-//   const [showPopup, setShowPopup] = useState(false);
-//   const [selectedDescription, setSelectedDescription] = useState(null);
-//   const [key, setKey] = useState("");
-//   const [storeName, setStoreName] = useState("");
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-//   const [detailData, setDetailData] = useState(null);
-//   const [storeDetails, setStoreDetails] = useState(null);
-
-//   const [statusState, setStatusState] = useState("");
-
-//   React.useEffect(() => {
-//     const savedStatus = localStorage.getItem("status");
-//     if (savedStatus) {
-//       setStatus(savedStatus);
-//       console.log("Initial status from localStorage: ", savedStatus);
-//     }
-//   }, []);
-
-//   const handleStatusChange = (newStatus) => {
-//     setStatus(newStatus);
-//     console.log("Form status changed to: ", newStatus);
-//   };
-
-//   console.log("Store ID: ", id);
-//   console.log("Key: ", key);
-
-//   useEffect(() => {
-//     const fetchInitialData = async () => {
-//       const token = getAuthToken();
-//       console.log("Auth token: ", token);
-//       if (!token) {
-//         setError("No authentication token found");
-//         setLoading(false);
-//         return;
-//       }
-
-//       try {
-//         const response = await fetch(
-//           `https://phpstack-1359771-5005546.cloudwaysapps.com/api/dashboard?search=${searchTerm}`,
-//           {
-//             method: "GET",
-//             headers: {
-//               Authorization: `${token}`,
-//               "Content-Type": "application/json",
-//             },
-//           }
-//         );
-
-//         if (!response.ok) {
-//           throw new Error("Network response was not ok");
-//         }
-
-//         const data = await response.json();
-//         setStores(data.stores);
-//         console.log("Fetched stores data: ", data.stores);
-//       } catch (error) {
-//         setError(error.message);
-//         console.error("Error fetching stores data: ", error.message);
-//       }
-//     };
-
-//     fetchInitialData();
-//   }, [searchTerm]);
-
-//   const loadStoreDetails = async () => {
-//     const token = getAuthToken();
-//     console.log("Token during loadStoreDetails: ", token);
-//     setLoading(true);
-//     if (!token) {
-//       setError("No authentication token found");
-//       setLoading(false);
-//       return;
-//     }
-//     try {
-//       const response = await fetch(
-//         `https://phpstack-1359771-5005546.cloudwaysapps.com/api/store-details/${id}`,
-//         {
-//           method: "GET",
-//           headers: {
-//             Authorization: token,
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
-//       if (!response.ok) {
-//         throw new Error("Failed to fetch store details");
-//       }
-//       const storeDetailData = await response.json();
-//       const storeDetail = storeDetailData.store_detail;
-//       setStoreName(storeDetail?.store_name || "");
-//       setStoreDetails(storeDetail);
-//       console.log("Store details fetched: ", storeDetail);
-//       const transformedData = [
-//         {
-//           title: "Domain Registration:",
-//           descriptions: [
-//             {
-//               text: "Matches trusted register:",
-//               key: "domain_match_trusted_register",
-//               status: storeDetail.domain_match_trusted_register,
-//             },
-//             {
-//               text: "Registered > 1 year:",
-//               key: "domain_register_1year_plus",
-//               status: storeDetail.domain_register_1year_plus,
-//             },
-//             {
-//               text: "DNS/DNSSEC Enabled:",
-//               key: "domain_dns_enabled",
-//               status: storeDetail.domain_dns_enabled,
-//             },
-//           ],
-//           button: true,
-//         },
-//         {
-//           title: "SSL Certification:",
-//           descriptions: [
-//             {
-//               text: "SSL Certification:",
-//               status: storeDetail.ssl_certifciation,
-//             },
-//           ],
-//         },
-//         {
-//           title: "Contact Information:",
-//           descriptions: [
-//             {
-//               text: "Valid email address:",
-//               key: "contact_info_valid_email",
-//               status: storeDetail.contact_info_valid_email,
-//             },
-//             {
-//               text: "Disposable email detected:",
-//               key: "contact_info_disposable_email_detected",
-//               status: storeDetail.contact_info_disposible_email_detected,
-//             },
-//             {
-//               text: "Valid phone number:",
-//               key: "contact_info_valid_phone_number",
-//               status: storeDetail.contact_info_valid_phone_number,
-//             },
-//           ],
-//           subtitle: "Physical Address:",
-//           subDescriptions: [
-//             {
-//               text: "Found Address:",
-//               key: "physical_address_found",
-//               status: storeDetail.physical_address_found,
-//             },
-//           ],
-//           button: true,
-//         },
-//         {
-//           title: "Business Registration:",
-//           descriptions: [
-//             {
-//               text: "Found business:",
-//               key: "business_found",
-//               status: storeDetail.business_found,
-//             },
-//           ],
-//           button: true,
-//         },
-//         {
-//           title: "Privacy Policy:",
-//           descriptions: [
-//             {
-//               text: "Match:",
-//               status: storeDetail.privacy_policy_matches,
-//             },
-//           ],
-//           button: true,
-//         },
-//         {
-//           title: "Product Reception:",
-//           descriptions: [
-//             {
-//               text: "30 orders over 35 days or older:",
-//               key: "product_reception_30days_older",
-//               status: storeDetail.product_reception_30days_older,
-//             },
-//             {
-//               text: "20/30 orders marked as delivered:",
-//               key: "product_reception_30orders_delivered",
-//               status: storeDetail.product_reception_30orders_delivered,
-//             },
-//             {
-//               text: "Median delivery time:",
-//               status: storeDetail.median_delivery_time,
-//             },
-//           ],
-//         },
-//         {
-//           title: "Return Policy:",
-//           descriptions: [
-//             {
-//               text: "Accept Returns:",
-//               key: "return_policy_accept_return",
-//               status: storeDetail.return_policy_accept_return,
-//             },
-//             {
-//               text: "Refund Rate:",
-//               status: `${storeDetail.return_policy_refund_rate}%`,
-//             },
-//           ],
-//           button: true,
-//         },
-//         {
-//           title: "Store Age:",
-//           descriptions: [
-//             {
-//               text: "Older than 1 year:",
-//               key: "store_age_1year_plus",
-//               status: storeDetail.store_age_1year_plus,
-//             },
-//           ],
-//         },
-//         {
-//           title: "Payment Processing",
-//           descriptions: [
-//             {
-//               text: "Payment gateway active:",
-//               status: storeDetail.payment_processing,
-//             },
-//           ],
-//         },
-
-//         {
-//           title: "Fake orders:",
-//           descriptions: [
-//             {
-//               text: "Number of fake orders found:",
-//               status: storeDetail.fake_order_found,
-//             },
-//           ],
-//         },
-//         {
-//           title: "Conversion Rate Data:",
-//           descriptions: [
-//             {
-//               text: (
-//                 <Link
-//                   to="/open-conversion-rate-data"
-//                   className="text-indigo-500 underline"
-//                 >
-//                   Open conversion rate data:
-//                 </Link>
-//               ),
-//               status: storeDetail.conversion_rate_data,
-//             },
-//           ],
-//         },
-//       ];
-
-//       setCardData(transformedData);
-//     } catch (error) {
-//       setError(error.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     loadStoreDetails();
-//   }, [id]);
-
-//   const handleEditClick = (description, key, status) => {
-//     setSelectedDescription(description);
-//     console.log("description === ", description);
-//     console.log("key === ", key);
-//     console.log("status === ", status);
-//     console.log("setStatusState === ", status);
-
-//     setKey(key || "");
-//     setStatusState(status);
-//     setShowPopup(true);
-//   };
-
-//   const handlePopupClose = () => {
-//     setShowPopup(false);
-//     setSelectedDescription(null);
-//   };
-
-//   const handlePopupConfirm = (newStatus) => {
-//     setStatus(newStatus);
-//     console.log("Popup confirmed with status: ", newStatus);
-
-//     handlePopupClose();
-
-//     toast.success(`Status updated to ${newStatus} for ${selectedDescription}`);
-//   };
-
-//   const handleOpenModal = (title) => {
-//     setDetailData(title);
-//     setIsModalOpen(true);
-//   };
-//   const handleCloseModal = () => {
-//     setIsModalOpen(false);
-//     setDetailData(null);
-//   };
-
-//   return (
-//     <>
-//       <ToastContainer position="top-right" autoClose={3000} />
-//       <div className="mx-auto max-w-screen-lg p-4 sm:p-6 md:p-8">
-//         {loading ? (
-//           <Skeleton />
-//         ) : error ? (
-//           <div className="text-center text-red-500">{error}</div>
-//         ) : (
-//           <>
-//             <div className="flex justify-between items-center mb-6">
-//               <h2 className="text-2xl font-bold">{storeName}</h2>
-//               <button
-//                 onClick={() => setShowAnalytics(!showAnalytics)}
-//                 className={twMerge(
-//                   "px-4 py-2 text-white rounded",
-//                   showAnalytics ? "bg-red-600" : "bg-indigo-600"
-//                 )}
-//               >
-//                 {showAnalytics ? "Close Analytics" : "Show Analytics"}
-//               </button>
-//             </div>
-//             {showAnalytics && <AnalyticsPage />}
-//             <CardContainer
-//               cards={cardData.slice(0, 11)}
-//               onEdit={(text, key, status) => {
-//                 handleEditClick(text, key, status);
-//                 console.log("------------", key, status);
-//               }}
-//               viewDetail={handleOpenModal}
-//             />
-//             {/* Render StatusForm only if store ID and details are present */}
-//             {storeDetails && (
-//               <StatusForm
-//                 status={status}
-//                 handleStatusChange={handleFormStatusChange}
-//               />
-//             )}
-//             <EditPopup
-//               show={showPopup}
-//               onClose={handlePopupClose}
-//               onConfirm={handlePopupConfirm}
-//               description={selectedDescription}
-//               keyProp={key}
-//               currentStatus={statusState}
-//             />
-//             <ModelPopup
-//               isOpen={isModalOpen}
-//               onClose={handleCloseModal}
-//               title={detailData}
-//             />
-//           </>
-//         )}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default AdminDetails;

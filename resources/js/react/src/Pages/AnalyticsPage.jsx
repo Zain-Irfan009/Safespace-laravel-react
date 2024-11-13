@@ -64,14 +64,14 @@ const AnalyticsPage = () => {
     };
 
     return (
-        <div className=" px-4 sm:px-4 lg:px-14 bg-gray-100 flex-1 min-h-screen pt-8">
+        <div className=" px-4 sm:px-4 lg:px-4 bg-gray-100 flex-1 min-h-screen pt-8">
             <div className="flex items-center justify-between mb-8 ">
                 <h1 className="text-base font-bold text-gray-900 sm:text-xl md:text-2xl">
                     Analysis
                 </h1>
                 <button
                     className="bg-indigo-600 text-white py-2 px-4 rounded-lg "
-                    onClick={handleButtonClick} // Trigger the navigate function when clicked
+                    onClick={handleButtonClick}
                 >
                     View Detail
                 </button>

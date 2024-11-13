@@ -76,36 +76,43 @@ const Card = ({
                                     description.text === "Ip address fake order:" ||
                                     description.text === "Discount fake order:" ||
                                     description.text === "Refund fake order:" ||
+                                    description.text === "Median delivery time:" ||
                                     description.text === "Shipping address fake order:"
                                         ? "mr-10"
                                         : ""
                                 }`}
                             >
-                                {description.status !== "link" && (
-                                    <>
-                                        <StatusBadge status={description.status} />
-
-                                        {description.text !== "Refund Rate:" &&
-                                        description.text !== "Ip address fake order:" &&
-                                        description.text !== "Discount fake order:" &&
-                                        description.text !== "Refund fake order:" &&
-                                        description.text !== "Shipping address fake order:" ? (
-                                            <button
-                                                onClick={() => {
-                                                    onEdit(
-                                                        description.text,
-                                                        description.key,
-                                                        description.status
-                                                    );
-                                                }}
-                                                className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
-                                            >
-                                                <PencilIcon className="h-4 w-4" />
-                                                {description.button}
-                                            </button>
-                                        ) : null}
-                                    </>
-                                )}
+                                {typeof description.text === "string" &&
+                                    !description.text.includes("Open conversion rate data:") && (
+                                        <>
+                                            {description.status !== "link" && (
+                                                <>
+                                                    <StatusBadge status={description.status} />
+                                                    {description.text !== "Refund Rate:" &&
+                                                    description.text !== "Ip address fake order:" &&
+                                                    description.text !== "Discount fake order:" &&
+                                                    description.text !== "Refund fake order:" &&
+                                                    description.text !== "Median delivery time:" &&
+                                                    description.text !==
+                                                    "Shipping address fake order:" ? (
+                                                        <button
+                                                            onClick={() => {
+                                                                onEdit(
+                                                                    description.text,
+                                                                    description.key,
+                                                                    description.status
+                                                                );
+                                                            }}
+                                                            className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
+                                                        >
+                                                            <PencilIcon className="h-4 w-4" />
+                                                            {description.button}
+                                                        </button>
+                                                    ) : null}
+                                                </>
+                                            )}
+                                        </>
+                                    )}
                             </div>
                         </li>
                     ))}
