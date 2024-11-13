@@ -288,7 +288,7 @@ function AdminDetails() {
                         {
                             text: (
                                 <Link
-                                    to="/open-conversion-rate-data"
+                                    to={`/admin/${id}/analytics`}
                                     className="text-indigo-500 underline"
                                 >
                                     Open conversion rate data:
