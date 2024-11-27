@@ -107,6 +107,7 @@ function AdminDetails({ stores }) {
           descriptions: [
             {
               text: "SSL Certification:",
+              key: "ssl_certifciation_status_update",
               status: storeDetail.ssl_certifciation,
             },
           ],
@@ -123,7 +124,7 @@ function AdminDetails({ stores }) {
             {
               text: "Disposable email detected:",
               key: "contact_info_disposable_email_detected",
-              status: storeDetail.contact_info_disposible_email_detected,
+              status: storeDetail.contact_info_disposable_email_detected,
             },
             {
               text: "Valid phone number:",
@@ -238,6 +239,7 @@ function AdminDetails({ stores }) {
           descriptions: [
             {
               text: "Payment gateway active:",
+              key: "payment_processing_status",
               status: storeDetail.payment_processing,
             },
           ],
