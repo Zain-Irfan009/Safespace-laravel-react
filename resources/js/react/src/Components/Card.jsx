@@ -53,7 +53,7 @@ const Card = ({
               ) : (
                 <button
                   onClick={() => viewDetail(title)}
-                  className="bg-indigo-500 text-white text-sm py-1 px-2 rounded flex items-center"
+                  className="bg-indigo-600 text-white text-sm py-1 px-2 rounded flex items-center"
                 >
                   View Details
                 </button>
@@ -104,7 +104,7 @@ const Card = ({
                                   description.status
                                 );
                               }}
-                              className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
+                              className="bg-indigo-600 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
                             >
                               <PencilIcon className="h-4 w-4" />
                               {description.button}
@@ -143,7 +143,7 @@ const Card = ({
                           subDescription.status
                         )
                       }
-                      className="bg-indigo-500 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
+                      className="bg-indigo-600 text-white py-1 px-2 rounded flex items-center gap-1 text-xs sm:text-sm"
                     >
                       <PencilIcon className="h-4 w-4" />
                       {subDescription.button}

@@ -10,7 +10,7 @@ import CardContainer from "../Components/CardContainer";
 import StatusForm from "../Components/StatusForm";
 import ModelPopup from "../Components/ModelPopup";
 import { AuthContext } from "../Context/AuthContext";
-function AdminDetails({ stores }) {
+function AdminDetails() {
   const navigate = useNavigate();
   const { token, setIsCallMainApi } = useContext(AuthContext);
   const location = useLocation();
@@ -19,9 +19,6 @@ function AdminDetails({ stores }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAnalytics, setShowAnalytics] = useState(false);
-  const [approved, setApproved] = useState(false);
-  const [denied, setDenied] = useState(false);
-  const [pending, setPending] = useState(false);
   const [status, setStatus] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [selectedDescription, setSelectedDescription] = useState(null);
@@ -34,13 +31,7 @@ function AdminDetails({ stores }) {
   const [verificationdata, setVerificationData] = useState(null);
   const [createDate, setCreateDate] = useState(null);
   const [statusState, setStatusState] = useState("");
-  React.useEffect(() => {
-    const savedStatus = localStorage.getItem("status");
-    if (savedStatus) {
-      setStatus(savedStatus);
-      console.log("Initial status from localStorage: ", savedStatus);
-    }
-  }, []);
+
   console.log("Store ID: ", id);
   console.log("Key: ", key);
 
@@ -77,6 +68,7 @@ function AdminDetails({ stores }) {
       const verification = storeDetailData.verification_data;
       setVerificationData(verification);
       setPaymentStatus(verification.payment_status);
+      setStatus(storeDetail.status);
 
       console.log("verificationdata", verification);
       console.log("Store details fetched: ", storeDetail);
@@ -316,11 +308,7 @@ function AdminDetails({ stores }) {
   };
 
   const handleStatusChange = (newStatus) => {
-    setApproved(newStatus === "approved");
-    setDenied(newStatus === "denied");
-    setPending(newStatus === "pending");
     setStatus(newStatus);
-    console.log(`Status changed to: ${newStatus}`);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -328,7 +316,7 @@ function AdminDetails({ stores }) {
       toast.alert("Please select an option before submitting.");
       return;
     }
-    // const token = getAuthToken();
+
     console.log("admg3", token);
     try {
       const response = await fetch(
@@ -351,7 +339,7 @@ function AdminDetails({ stores }) {
 
   const loadAndSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+
     try {
       await Promise.all([loadStoreDetails(), handleSubmit(e)]);
       // toast.success("Store status updated successfully", {
@@ -398,11 +386,8 @@ function AdminDetails({ stores }) {
 
   return (
     <div className="px-4 sm:px-4 lg:px-4 bg-gray-100 flex-1 min-h-screen ">
-      {/* // <div className="px-4  bg-gray-100 flex-1 min-h-screen "> */}
-
       <div className="flex items-center justify-between mb-0 pt-8">
         <div className="flex items-center justify-center flex-wrap gap-2 text-center">
-          {/* Store Name */}
           {loading || error ? (
             <div className="bg-gray-300 rounded-md h-8 w-72 animate-pulse"></div>
           ) : (
@@ -411,7 +396,6 @@ function AdminDetails({ stores }) {
             </h1>
           )}
 
-          {/* Payment Status */}
           {loading || error ? (
             <div className="bg-gray-300 rounded-md h-8 w-14 animate-pulse"></div>
           ) : (
@@ -430,12 +414,12 @@ function AdminDetails({ stores }) {
         </div>
 
         {loading || error ? (
-          <div className="bg-gray-300 rounded-lg h-10 w-24 animate-pulse"></div>
+          <div className="bg-gray-300 rounded-lg h-8 w-24 lg:h-10 lg:w-24 md:h-10 md:w-24   animate-pulse"></div>
         ) : (
           cardData.length > 0 && (
             <button
               onClick={handleButtonClick}
-              className="bg-indigo-600 text-white py-2 px-4 rounded-lg"
+              className="bg-indigo-600 text-white text-sm  py-1 px-2  lg:py-2 lg:px-4 lg:text-base md:py-2 md:px-4 md:text-base sm:text-sm sm:py-1 sm:px-2 rounded-md"
             >
               {showAnalytics ? "View Detail" : "Analytics"}
             </button>
@@ -444,7 +428,7 @@ function AdminDetails({ stores }) {
       </div>
       <div>
         {loading || error ? (
-          <div className="bg-gray-300 rounded-lg h-4 w-36 animate-pulse mb-3"></div>
+          <div className="bg-gray-300 rounded-lg h-4 w-36 animate-pulse lg:mb-3 lg:mt-3 md:mt-3 md:mb-3 sm:mt-3 sm:mb-3 mt-3 mb-3"></div>
         ) : (
           createDate && (
             <p className="mb-3 text-sm font-medium text-black">
@@ -514,6 +498,7 @@ function AdminDetails({ stores }) {
       {console.log("detailData", detailData)}
       {console.log("id===", id)}
       {console.log("onchangeid===", statusState)}
+      {console.log("status???", status)}
 
       {isModalOpen && (
         <ModelPopup

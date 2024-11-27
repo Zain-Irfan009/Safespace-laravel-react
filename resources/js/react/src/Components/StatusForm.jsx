@@ -3,19 +3,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const StatusForm = ({ handleSubmit, status, handleStatusChange, storeId }) => {
+const StatusForm = ({
+  handleSubmit,
+  status = "Pending",
+  handleStatusChange,
+  storeId,
+}) => {
   const [loading, setLoading] = React.useState(false);
-
-  React.useEffect(() => {
-    const savedStatus = localStorage.getItem(`status_${storeId}`);
-    if (savedStatus) {
-      handleStatusChange(savedStatus);
-    }
-  }, [storeId, handleStatusChange]);
 
   const handleCheckboxChange = (option) => {
     handleStatusChange(option);
-    localStorage.setItem(`status_${storeId}`, option);
   };
 
   return (

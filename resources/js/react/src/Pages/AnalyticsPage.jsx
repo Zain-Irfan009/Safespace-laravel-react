@@ -70,7 +70,7 @@ const AnalyticsPage = () => {
           Analysis
         </h1>
         <button
-          className="bg-indigo-600 text-white py-2 px-4 rounded-lg "
+          className="bg-indigo-600 text-white text-sm  py-1 px-2  lg:py-2 lg:px-4 lg:text-base md:py-2 md:px-4 md:text-base sm:text-sm sm:py-1 sm:px-2 rounded-md"
           onClick={handleButtonClick}
         >
           View Detail
