@@ -21,6 +21,9 @@ export default {
         fadeOutSlideDown: "fadeOutSlideDown 0.3s ease-out forwards",
       },
     },
+      fontFamily: {
+          montserrat: ["Montserrat", "sans-serif"], // Add Montserrat font
+      },
   },
   plugins: [
     require("@tailwindcss/forms"),

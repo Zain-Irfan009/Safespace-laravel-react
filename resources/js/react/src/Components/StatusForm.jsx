@@ -3,19 +3,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const StatusForm = ({ handleSubmit, status, handleStatusChange }) => {
+const StatusForm = ({ handleSubmit, status, handleStatusChange, storeId }) => {
   const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    const savedStatus = localStorage.getItem("status");
+    const savedStatus = localStorage.getItem(`status_${storeId}`);
     if (savedStatus) {
       handleStatusChange(savedStatus);
     }
-  }, [handleStatusChange]);
+  }, [storeId, handleStatusChange]);
 
   const handleCheckboxChange = (option) => {
     handleStatusChange(option);
-    localStorage.setItem("status", option);
+    localStorage.setItem(`status_${storeId}`, option);
   };
 
   return (
@@ -29,18 +29,18 @@ const StatusForm = ({ handleSubmit, status, handleStatusChange }) => {
             Approved/Denied
           </h1>
           <div className="flex flex-col sm:flex-row sm:space-x-3 items-start md:items-center space-y-3 sm:space-y-0 md:space-x-4 mb-4 md:mb-0">
-            {["approved", "denied", "pending"].map((option) => {
+            {["Approved", "Denied", "Pending"].map((option) => {
               const checkboxColor = {
-                approved: "text-green-600",
-                denied: "text-red-600",
-                pending: "text-yellow-500",
+                Approved: "text-green-600",
+                Denied: "text-red-600",
+                Pending: "text-yellow-500",
               };
               const currentColor = checkboxColor[option] || "text-gray-600";
 
               return (
                 <div className="flex items-center " key={option}>
                   <input
-                    id={option}
+                    id={`${option}_${storeId}`}
                     name="status"
                     type="checkbox"
                     className={`h-4 w-4 border-gray-300 rounded focus:ring-2 ${currentColor}`}
@@ -49,7 +49,7 @@ const StatusForm = ({ handleSubmit, status, handleStatusChange }) => {
                     onChange={() => handleCheckboxChange(option)}
                   />
                   <label
-                    htmlFor={option}
+                    htmlFor={`${option}_${storeId}`}
                     className="ml-2 block text-sm font-medium text-gray-700"
                   >
                     {option.charAt(0).toUpperCase() + option.slice(1)}

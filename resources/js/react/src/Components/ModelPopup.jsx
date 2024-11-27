@@ -41,7 +41,7 @@ const ModelPopup = ({ title, onClose, onConfirm, onCancel, children }) => {
         transition
         className="fixed inset-0 bg-black bg-opacity-60 transition-opacity"
       />
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div className="font-montserrat fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4 text-center">
           <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:w-full sm:max-w-lg sm:p-6">
             <div className="flex items-center justify-between mb-4">

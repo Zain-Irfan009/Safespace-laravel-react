@@ -5,10 +5,10 @@ import Footer from "../Components/Footer";
 
 const BussinessDirectry = () => {
   return (
-    <div className="bg-gradient-to-r from-[#018ba3] to-[#008d49]">
+    <div className="bg-gradient-to-r from-[#018ba3] to-[#008d49] font-montserrat">
       <Header />
       <div className="w-full max-w-[1540px] mx-auto  px-4 sm:px-6 md:px-2">
-        <Card className=" mt-6 !rounded-3xl  px-12 py-12 h-[500px]   mb-6">
+        <Card className="  !rounded-3xl  px-12 py-12 h-[500px]   mb-6">
           <h2 className="text-pretty text-2xl sm:text-4xl font-semibold tracking-tight text-gray-900">
             Business Directory:
           </h2>
@@ -28,7 +28,7 @@ const BussinessDirectry = () => {
                 name="url"
                 type="url"
                 placeholder="http://you@example.com"
-                className="block w-full sm:w-[32%] md:w-1/2 lg:w-[22%] rounded-md border-0 py-3 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-gray-600 sm:text-sm"
+                className="block w-full sm:w-[32%] md:w-1/2 lg:w-[22%] rounded-lg border-0 py-2 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm"
               />
             </div>
           </div>
