@@ -123,8 +123,8 @@ function AdminDetails({ stores }) {
             },
             {
               text: "Disposable email detected:",
-              key: "contact_info_disposable_email_detected",
-              status: storeDetail.contact_info_disposable_email_detected,
+              key: "contact_info_disposible_email_detected",
+              status: storeDetail.contact_info_disposible_email_detected,
             },
             {
               text: "Valid phone number:",
