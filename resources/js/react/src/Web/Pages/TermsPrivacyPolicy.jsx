@@ -249,7 +249,7 @@ const TermsPrivacyPolicy = () => {
                     href="mailto:support@safespacego.com"
                     className="text-blue-500 hover:underline"
                   >
-                    support@safespacego.com
+                    info@safespacego.com
                   </a>
                 </p>
               </div>
@@ -407,7 +407,7 @@ const TermsPrivacyPolicy = () => {
                   href="mailto:support@safespacego.com"
                   className="text-blue-600 underline"
                 >
-                  support@safespacego.com
+                  info@safespacego.com
                 </a>
                 .
               </p>
@@ -441,7 +441,7 @@ const TermsPrivacyPolicy = () => {
                   href="mailto:support@safespacego.com"
                   className="text-blue-500 hover:underline"
                 >
-                  support@safespacego.com
+                  info@safespacego.com
                 </a>
               </p>
             </div>

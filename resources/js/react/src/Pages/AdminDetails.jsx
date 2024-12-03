@@ -95,12 +95,24 @@ function AdminDetails() {
           button: true,
         },
         {
-          title: "SSL Certification:",
+          title: "Product Reception:",
           descriptions: [
             {
-              text: "SSL Certification:",
-              key: "ssl_certifciation_status_update",
-              status: storeDetail.ssl_certifciation,
+              text: "30 orders over 35 days or older:",
+              key: "product_reception_30days_older",
+              status: storeDetail.product_reception_30days_older,
+            },
+            {
+              text: "20/30 orders marked as delivered:",
+              key: "product_reception_30orders_delivered",
+              status: storeDetail.product_reception_30orders_delivered,
+            },
+            {
+              text: "Median delivery time:",
+              status:
+                storeDetail.product_reception_median_delivery_time != null
+                  ? `${storeDetail.product_reception_median_delivery_time}`
+                  : null,
             },
           ],
         },
@@ -135,16 +147,27 @@ function AdminDetails() {
           button: true,
         },
         {
-          title: "Business Registration:",
+          title: "Fake orders:",
           descriptions: [
             {
-              text: "Found business:",
-              key: "business_found",
-              status: storeDetail.business_found,
+              text: "Ip address fake order:",
+              status: storeDetail.ip_address_fake_order,
+            },
+            {
+              text: "Discount fake order:",
+              status: storeDetail.discount_fake_order,
+            },
+            {
+              text: "Refund fake order:",
+              status: storeDetail.refund_fake_order,
+            },
+            {
+              text: "Shipping address fake order:",
+              status: storeDetail.shipping_address_fake_order,
             },
           ],
-          button: true,
         },
+
         {
           title: "Privacy Policy:",
           descriptions: [
@@ -156,27 +179,16 @@ function AdminDetails() {
           button: true,
         },
         {
-          title: "Product Reception:",
+          title: "SSL Certification:",
           descriptions: [
             {
-              text: "30 orders over 35 days or older:",
-              key: "product_reception_30days_older",
-              status: storeDetail.product_reception_30days_older,
-            },
-            {
-              text: "20/30 orders marked as delivered:",
-              key: "product_reception_30orders_delivered",
-              status: storeDetail.product_reception_30orders_delivered,
-            },
-            {
-              text: "Median delivery time:",
-              status:
-                storeDetail.product_reception_median_delivery_time != null
-                  ? `${storeDetail.product_reception_median_delivery_time}`
-                  : null,
+              text: "SSL Certification:",
+              key: "ssl_certifciation_status_update",
+              status: storeDetail.ssl_certifciation,
             },
           ],
         },
+
         {
           title: "Return Policy:",
           descriptions: [
@@ -206,25 +218,15 @@ function AdminDetails() {
           ],
         },
         {
-          title: "Fake orders:",
+          title: "Business Registration:",
           descriptions: [
             {
-              text: "Ip address fake order:",
-              status: storeDetail.ip_address_fake_order,
-            },
-            {
-              text: "Discount fake order:",
-              status: storeDetail.discount_fake_order,
-            },
-            {
-              text: "Refund fake order:",
-              status: storeDetail.refund_fake_order,
-            },
-            {
-              text: "Shipping address fake order:",
-              status: storeDetail.shipping_address_fake_order,
+              text: "Found business:",
+              key: "business_found",
+              status: storeDetail.business_found,
             },
           ],
+          button: true,
         },
         {
           title: "Payment Processing",
@@ -310,8 +312,10 @@ function AdminDetails() {
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!status) {
       toast.alert("Please select an option before submitting.");
       return;
@@ -330,25 +334,19 @@ function AdminDetails() {
           body: JSON.stringify({ status, id }),
         }
       );
+
       if (!response.ok) throw new Error("Failed to update status");
 
       const data = await response.json();
-      setIsCallMainApi(true);
-    } catch (error) {}
-  };
+      console.log("Submit Response:", data);
 
-  const loadAndSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      await Promise.all([loadStoreDetails(), handleSubmit(e)]);
+      // Toast after successful submit
       // toast.success("Store status updated successfully", {
       //   position: "bottom-center",
       //   hideProgressBar: true,
       //   closeOnClick: true,
       //   pauseOnHover: true,
       //   draggable: true,
-      //   // progress: undefined,
       //   theme: "light",
       //   autoClose: 500,
       //   toastClassName: twMerge(
@@ -357,13 +355,46 @@ function AdminDetails() {
       //   bodyClassName: twMerge("text-sm font-medium"),
       // });
     } catch (error) {
+      console.error("Error in handleSubmit:", error);
+
+      // toast.error("Failed to update store status", {
+      //   position: "bottom-center",
+      //   hideProgressBar: true,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   theme: "light",
+      //   autoClose: 500,
+      //   toastClassName: twMerge(
+      //     "bg-indigo-600 text-white p-3 rounded shadow-lg"
+      //   ),
+      //   bodyClassName: twMerge("text-sm font-medium"),
+      // });
+    }
+  };
+
+  const loadAndSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Step 1: Call handleSubmit
+      await handleSubmit(e);
+
+      // Step 2: Set main API call state
+      setIsCallMainApi(true);
+
+      // Step 3: Call loadStoreDetails
+      await loadStoreDetails();
+    } catch (error) {
+      console.error("Error in loadAndSubmit:", error);
+
       // toast.error("Error loading details or updating status", {
       //   position: "bottom-center",
       //   hideProgressBar: true,
       //   closeOnClick: true,
       //   pauseOnHover: true,
       //   draggable: true,
-      //   // progress: undefined,
       //   theme: "light",
       //   autoClose: 500,
       //   toastClassName: twMerge(
@@ -372,9 +403,10 @@ function AdminDetails() {
       //   bodyClassName: twMerge("text-sm font-medium"),
       // });
     } finally {
-      setLoading(false);
+      setLoading(false); // Ensure to hide the loading state
     }
   };
+
   const handleButtonClick = () => {
     setShowAnalytics((prev) => !prev);
     if (!showAnalytics) {
@@ -385,7 +417,7 @@ function AdminDetails() {
   };
 
   return (
-    <div className="px-4 sm:px-4 lg:px-4 bg-gray-100 flex-1 min-h-screen ">
+    <div className="px-4 sm:px-4 lg:px-4 bg-gray-100 flex-1 min-h-screen font-montserrat ">
       <div className="flex items-center justify-between mb-0 pt-8">
         <div className="flex items-center justify-center flex-wrap gap-2 text-center">
           {loading || error ? (
@@ -417,12 +449,15 @@ function AdminDetails() {
           <div className="bg-gray-300 rounded-lg h-8 w-24 lg:h-10 lg:w-24 md:h-10 md:w-24   animate-pulse"></div>
         ) : (
           cardData.length > 0 && (
-            <button
-              onClick={handleButtonClick}
-              className="bg-indigo-600 text-white text-sm  py-1 px-2  lg:py-2 lg:px-4 lg:text-base md:py-2 md:px-4 md:text-base sm:text-sm sm:py-1 sm:px-2 rounded-md"
-            >
-              {showAnalytics ? "View Detail" : "Analytics"}
-            </button>
+            <div>
+              <button
+                onClick={handleButtonClick}
+                className="bg-indigo-600 text-white text-sm  py-1 px-2  lg:py-2 lg:px-4 lg:text-base md:py-2 md:px-4 md:text-base sm:text-sm sm:py-1 sm:px-2 rounded-md"
+              >
+                Analytics
+              </button>
+              {showAnalytics && <AnalyticsPage />}
+            </div>
           )
         )}
       </div>
@@ -431,7 +466,7 @@ function AdminDetails() {
           <div className="bg-gray-300 rounded-lg h-4 w-36 animate-pulse lg:mb-3 lg:mt-3 md:mt-3 md:mb-3 sm:mt-3 sm:mb-3 mt-3 mb-3"></div>
         ) : (
           createDate && (
-            <p className="mb-3 text-sm font-medium text-black">
+            <p className="mb-3  text-xs font-semibold text-black">
               Created on:{" "}
               {new Date(createDate).toLocaleDateString("en-US", {
                 day: "2-digit",
@@ -443,9 +478,7 @@ function AdminDetails() {
         )}
       </div>
 
-      {showAnalytics ? (
-        <AnalyticsPage />
-      ) : (
+      {showAnalytics ? null : ( // Removed <AnalyticsPage />
         <>
           {loading || error ? (
             <>

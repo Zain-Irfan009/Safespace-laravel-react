@@ -19,14 +19,15 @@ const ApplyForVerifecation = () => {
             </h2>
             <p className="text-sm my-4">Supported e-commerce software.</p>
 
-            <div className="flex flex-col  items-start sm:items-start text-center space-y-6 mb-16 mx-auto">
+            {/* Shopify */}
+            <div className="flex flex-col items-center sm:items-start text-center space-y-6 lg:mb-16 mb-8 mx-auto">
               <img
                 src={Shopify}
                 alt="Shopify"
                 loading="lazy"
-                className="max-w-[10rem] sm:max-w-[10rem] lg:ml-9 h-auto"
+                className="max-w-[10rem] sm:max-w-[10rem] lg:ml-9 md:ml-9 h-auto"
               />
-              <Button className="!bg-[#5ab453] hover:bg-green-600 !text-black font-semibold !text-sm py-2 !px-8  rounded-full inline-flex items-center">
+              <Button className="!bg-[#5ab453] hover:bg-green-600 !text-black font-semibold !text-sm py-2 !px-8 rounded-full inline-flex items-center">
                 Apply through Shopify
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -45,27 +46,28 @@ const ApplyForVerifecation = () => {
               </Button>
             </div>
 
-            <div className="flex flex-col flex-wrap sm:flex-row sm:gap-16 items-start sm:items-start">
-              <div className="flex flex-col text-center space-y-6 sm:space-y-9 mb-6 sm:mb-0">
+            {/* WooCommerce and BigCommerce */}
+            <div className="flex flex-col sm:flex-row sm:gap-16 items-center sm:items-start ">
+              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8 ">
                 <img
                   src={woo}
                   alt="WooCommerce"
                   loading="lazy"
-                  className="max-w-[10rem] sm:max-w-[13rem] h-auto"
+                  className="max-w-[10rem] sm:max-w-[10rem]  h-auto"
                 />
-                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 px-8 rounded-full flex justify-center items-center">
+                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 !px-20 rounded-full inline-flex items-center">
                   Coming soon
                 </Button>
               </div>
 
-              <div className="flex flex-col text-center space-y-[26px]">
+              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8 ">
                 <img
                   src={big}
                   alt="BigCommerce"
                   loading="lazy"
-                  className="max-w-[10rem] sm:max-w-[17rem] h-auto"
+                  className=" max-w-[10rem] sm:max-w-[10rem]  h-auto"
                 />
-                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 px-8 rounded-full flex justify-center items-center">
+                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 !px-20 rounded-full inline-flex items-center">
                   Coming soon
                 </Button>
               </div>

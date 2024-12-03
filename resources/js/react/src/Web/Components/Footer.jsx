@@ -12,6 +12,7 @@ const Footer = () => {
     "Contact Us": [
       { name: "Application Inquiries", href: "" },
       { name: "General Inquiries", href: "" },
+      { name: "Reports", href: "" },
     ],
   };
   const location = useLocation();
@@ -23,7 +24,7 @@ const Footer = () => {
 
   return (
     <div className="">
-      <footer className="bg-white ">
+      <footer className="bg-white font-montserrat">
         <div className="w-full max-w-[1540px] mx-auto px-6 py-4 sm:py-4 lg:px-12 lg:py-8">
           <div className="xl:grid xl:grid-cols-3  xl:gap-8 text-center lg:text-start  sm:text-center md:text-start">
             {/* Logo */}

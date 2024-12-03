@@ -44,7 +44,7 @@ const Header = () => {
         className="w-full max-w-[1540px] mx-auto flex items-center justify-between p-4 sm:p-6 md:px-8 lg:px-12"
       >
         {/* Logo Section */}
-        <div className="flex flex-1 justify-center lg:justify-start min-w-36">
+        <div className="flex flex-1  justify-start  lg:justify-start min-w-28">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
@@ -69,7 +69,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div
-          className="hidden lg:flex flex-grow lg:pr-4
+          className="hidden lg:flex flex-grow lg:pl-12
          justify-start"
         >
           {navigation.map((item) => (
@@ -92,11 +92,11 @@ const Header = () => {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full max-w-xs sm:max-w-sm overflow-y-auto bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full max-w-xs sm:max-w-sm overflow-y-auto  bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img alt="logo" src={logo} className="h-8 w-auto" />
+              <img alt="logo" src={logo} className="h-12 w-auto" />
             </Link>
             <div className="ml-auto">
               <button

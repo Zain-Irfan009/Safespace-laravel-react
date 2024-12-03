@@ -23,22 +23,22 @@ const Home = () => {
             alt=""
             src={bg}
             loading="lazy"
-            className="h-full w-full top-0 left-0  rounded-3xl  object-cover  absolute"
+            className="h-full w-full max-h-[350px] md:max-h-[450px] sm:max-h-[450px] lg:max-h-[600px] xl:max-h-[700px] top-0 left-0 rounded-3xl object-cover absolute"
           />
-          <div className=" w-full max-w-[1540px] mx-auto flex p-6 min-h-[40rem] relative z-10 ">
-            <div className=" max-w-md  items-start content-center  ">
+          <div className="w-full max-w-[1540px] mx-auto flex p-6 min-h-[22rem] lg:min-h-[37rem] xl:min-h-[40rem] sm:min-h-[22rem] relative z-10">
+            <div className="max-w-md items-start content-center">
               <Card className={"!rounded-3xl !px-6 "}>
-                <div className=" py-12  sm:py-2 flex flex-col  ">
+                <div className="lg:py-2 md:py-2 sm:py-2 flex flex-col">
                   <h1 className="text-2xl font-bold text-gray-900">
                     Trust Matters
                   </h1>
-                  <p className="mt-2 text-base text-gray-600">
+                  <p className="mt-2 text-sm md:text-base lg:text-base text-gray-600">
                     Boost conversions with the e-commerce tool that closes the
                     trust gap between individual stores and large marketplaces.
                   </p>
                   <div className="mt-6 flex justify-end">
                     <Link to="/applyforverification">
-                      <Button className="px-12 text-base font-medium">
+                      <Button className="px-12 text-sm md:text-base lg:text-base font-medium">
                         Apply for verification
                       </Button>
                     </Link>
@@ -50,9 +50,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2 max-w-[1540px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-6 lg:py-4 lg:px-1.5 ">
+      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4">
         {/* Left container with image */}
-        <div className="flex-1 lg:py-4 md:py-4 pt-0 pb-0">
+        <div className="flex-1 sm:pt-4 lg:py-4 md:pt-4 pt-0 pb-0">
           <img
             src={h1}
             alt="Person using a tablet"
@@ -70,7 +70,7 @@ const Home = () => {
               loading="lazy"
               className="rounded-3xl absolute  object-cover lg:px-12 md:px-10 sm:px-10 px-10"
             />
-            <div className="relative z-10 flex flex-col items-center justify-start h-full lg:mt-12 md:mt-12 sm:mt-14 mt-10  ">
+            <div className="relative z-10 flex flex-col items-center justify-start h-full lg:mt-12 md:mt-16 sm:mt-16 mt-6  ">
               <p className="text-xs lg:text-sm md:text-sm sm:text-xs  text-center text-gray-400 font-normal">
                 Now available for Shopify merchants
               </p>
@@ -78,45 +78,47 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      <Card className="!bg-[#ffeda7] !rounded-3xl lg:mx-6 md:mx-4 sm:mx-4 mx-4 mb-6 ">
-        <div className="w-full max-w-[1540px] mx-auto flex justify-between text-sm flex-wrap ">
+      <Card className="!bg-[#f6f0a6] !rounded-3xl lg:mx-6 md:mx-4 sm:mx-4 mx-4 mb-6 md:px-1 md:py-2">
+        <div className="w-full max-w-[1540px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 text-sm md:gap-2">
           {/* First SVG Container */}
-          <div className="flex-1 p-4 mx-2 flex flex-col items-center justify-center">
+          <div className="p-4 mx-2 flex flex-col items-center md:p-2">
             <img
               src={safe}
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center text-base mt-2">
-              Keep customers safe from <br /> unsafe online stores & <br />{" "}
-              websites
+            <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2">
+              <span>Keep customers safe from</span>
+              <span className="block">unsafe online stores &</span>
+              <span className="block">websites</span>
             </p>
           </div>
 
           {/* Second SVG Container */}
-          <div className="flex-1 p-4 mx-2 flex flex-col items-center justify-center">
+          <div className="p-4 mx-2 flex flex-col items-center">
             <img
               src={cart}
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center text-base mt-2">
-              Helping legitimate e-commerce <br /> stores boost conversion rates
-              & <br /> grow revenue.
+            <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2">
+              <span>Helping legitimate e-commerce</span>
+              <span className="block">stores boost conversion rates &</span>
+              <span className="block">grow revenue.</span>
             </p>
           </div>
 
           {/* Third SVG Container */}
-          <div className="flex-1 p-4 mx-2 flex flex-col items-center justify-center">
+          <div className="p-4 mx-2 flex flex-col items-center col-span-2 md:col-span-1">
             <img
               src={ship}
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center text-base mt-2">
-              Ensuring businesses deliver product <br /> and bringing
-              transparency to <br /> shipping times.
+            <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2">
+              <span>Ensuring businesses deliver product</span>
+              <span className="block">and bringing transparency to</span>
+              <span className="block">shipping times.</span>
             </p>
           </div>
         </div>

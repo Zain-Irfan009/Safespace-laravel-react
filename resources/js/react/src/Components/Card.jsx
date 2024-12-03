@@ -39,13 +39,13 @@ const Card = ({
   loading,
   error,
 }) => (
-  <div className=" bg-white shadow-lg rounded-lg p-4 md:p-6 flex flex-col">
+  <div className=" bg-white shadow-lg rounded-lg p-4 md:p-6 flex flex-col font-montserrat">
     {loading && <p className="text-gray-600">Loading...</p>}
     {error && <p className="text-red-500">{error}</p>}
     {!loading && !error && (
       <>
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-base font-medium text-gray-800">{title}</h2>
+        <div className="flex justify-between items-center mb-2 font-montserrat">
+          <h2 className="text-base font-bold text-gray-800">{title}</h2>
           {button && (
             <div className="relative">
               {loading ? (
@@ -61,7 +61,7 @@ const Card = ({
             </div>
           )}
         </div>
-        <ul className="mt-2 space-y-2 text-gray-600 text-sm">
+        <ul className="mt-2 space-y-2 text-gray-600 text-sm ">
           {descriptions.map((description, index) => (
             <li
               key={index}
@@ -121,14 +121,14 @@ const Card = ({
 
         {subtitle && (
           <>
-            <h3 className="text-base font-semibold text-gray-800 mt-4">
+            <h3 className="text-base font-semibold text-gray-800 mt-4 ">
               {subtitle}
             </h3>
-            <ul className="mt-2 space-y-2 text-gray-600 text-sm">
+            <ul className="mt-2 space-y-2 text-gray-600 text-sm ">
               {subDescriptions?.map((subDescription, index) => (
                 <li
                   key={index}
-                  className="flex flex-col sm:flex-row justify-between items-start"
+                  className="flex flex-col sm:flex-row justify-between items-start font-montserrat"
                 >
                   <span className="flex-1 break-words mb-1 sm:mb-0">
                     • {subDescription.text}

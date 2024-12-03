@@ -70,20 +70,10 @@ export default function DashboardPage() {
           setIsOpen={setIsSidebarOpen}
         />
         <div className="flex-1 overflow-y-auto bg-gray-100 sm:px-4 lg:px-7 max-h-[calc(100vh-68px)] mx-auto md:mx-0">
-          {loading ? (
-            <div className="p-4">
-              <Skeleton
-                height={40}
-                width={200}
-                className="mb-4 mt-4 rounded-lg"
-              />
-              {/* <Skeleton height={200} /> */}
-            </div>
-          ) : (
-            <main>
-              <Outlet />
-            </main>
-          )}
+          <main>
+            <Outlet stores={stores} />
+            {/* <Outlet /> */}
+          </main>
         </div>
       </div>
     </div>

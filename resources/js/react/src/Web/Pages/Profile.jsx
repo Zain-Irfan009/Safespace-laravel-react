@@ -6,23 +6,23 @@ import Footer from "../Components/Footer";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { AuthContext } from "../../Context/AuthContext";
-import "animate.css";
-
+import { useParams, useNavigate } from "react-router-dom";
+import Card from "../Components/Card";
 const Profile = () => {
+  const params = useParams();
   const [profileData, setProfileData] = useState(null);
   const [verification, setVerification] = useState(null);
-  const [createDate, setCreateDate] = useState(null);
   const { token } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProfileData = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await fetch(
-          "https://phpstack-1359771-5005546.cloudwaysapps.com/api/store/details?shop=tlx-new-brand.myshopify.com",
+          `https://phpstack-1359771-5005546.cloudwaysapps.com/api/store/details?shop=${params.shop}`,
           {
             method: "GET",
             headers: {
@@ -37,9 +37,12 @@ const Profile = () => {
         }
 
         const data = await response.json();
-        setProfileData(data.data);
-        setVerification(data.verfication_request);
-        setCreateDate(data.verfication_request?.created_at);
+        if (!data.data || Object.keys(data.data).length === 0) {
+          setError("Store not found");
+        } else {
+          setProfileData(data.data);
+          setVerification(data.verfication_request);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -48,7 +51,34 @@ const Profile = () => {
     };
 
     fetchProfileData();
-  }, [token]);
+  }, [token, params.shop]);
+  if (error) {
+    return (
+      <div className="bg-gradient-to-r from-[#018ba3] to-[#008d49] font-montserrat">
+        <Header />
+        <div className="w-full max-w-[1540px] mx-auto  px-4 sm:px-6 md:px-2">
+          <Card className="!rounded-3xl px-12 py-12 md:h-[370px] lg:h-[370px] mb-6 shadow-xl flex items-center justify-center">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Store Not Found
+              </h2>
+              <p className="text-gray-600 mb-6">
+                The store you are looking for does not exist or cannot be
+                accessed.
+              </p>
+              <button
+                onClick={() => navigate("/businessdirectory")}
+                className="px-6 py-3 bg-[#00bf63] text-white font-bold rounded-lg hover:bg-green-600"
+              >
+                Go Back
+              </button>
+            </div>
+          </Card>
+        </div>
+        <Footer className="mt-5" />
+      </div>
+    );
+  }
 
   const handleNavigate = () => {
     if (profileData && profileData.store_name) {
@@ -93,29 +123,13 @@ const Profile = () => {
       <Header />
       <div className="w-full max-w-[1540px] mx-auto px-4 sm:px-6 md:px-2 flex flex-col items-center bg-white rounded-3xl mb-4">
         <div className="w-full max-w-[850px] mb-0 mt-8 px-4 sm:px-6">
-          <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 text-center lg:text-left break-words">
+          <h1 className="mb-4 text-lg sm:text-lg md:text-2xl lg:text-2xl font-bold text-blue-600 text-center lg:text-left break-words">
             {loading || error ? (
-              <div className="w-[300px] h-[30px] bg-gray-300 rounded-md animate-pulse sm:mx-0 mx-auto"></div>
+              <div className="w-[200px] sm:w-[300px] md:w-[300px] lg:w-[300px] h-[30px]  bg-gray-300 rounded-md animate-pulse sm:mx-0 mx-auto"></div>
             ) : (
               profileData?.store_name || "Store Name"
             )}
           </h1>
-          <div>
-            {loading || error ? (
-              <div className="w-36 h-4 bg-gray-300 rounded-lg animate-pulse mt-3 mb-3 sm:mx-0 mx-auto"></div>
-            ) : (
-              createDate && (
-                <p className="mb-2 mt-2 text-sm font-semibold text-black text-center lg:text-left break-words">
-                  Created on:{" "}
-                  {new Date(createDate).toLocaleDateString("en-US", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </p>
-              )
-            )}
-          </div>
         </div>
 
         {/* Top Circular Progress Bar Section */}
@@ -202,9 +216,17 @@ const Profile = () => {
               {loading ? (
                 <Skeleton width={50} height={30} />
               ) : (
-                `${parseInt(
-                  profileData?.product_reception_median_delivery_time || "0"
-                )}D`
+                `${
+                  isNaN(
+                    parseInt(
+                      profileData?.product_reception_median_delivery_time
+                    )
+                  )
+                    ? 0
+                    : parseInt(
+                        profileData.product_reception_median_delivery_time
+                      )
+                }D`
               )}
             </span>
             <div className="w-[7rem] h-[7rem] font-bold hidden sm:block">
@@ -212,12 +234,28 @@ const Profile = () => {
                 <Skeleton circle={true} height={115} width={115} />
               ) : (
                 <CircularProgressbar
-                  value={parseInt(
-                    profileData?.product_reception_median_delivery_time || "0"
-                  )}
-                  text={`${parseInt(
-                    profileData?.product_reception_median_delivery_time || "0"
-                  )}D`}
+                  value={
+                    isNaN(
+                      parseInt(
+                        profileData?.product_reception_median_delivery_time
+                      )
+                    )
+                      ? 0
+                      : parseInt(
+                          profileData.product_reception_median_delivery_time
+                        )
+                  }
+                  text={`${
+                    isNaN(
+                      parseInt(
+                        profileData?.product_reception_median_delivery_time
+                      )
+                    )
+                      ? 0
+                      : parseInt(
+                          profileData.product_reception_median_delivery_time
+                        )
+                  }D`}
                   styles={buildStyles({
                     pathColor: "#7ed957",
                     textColor: "black",
@@ -241,16 +279,18 @@ const Profile = () => {
                 "Safety Rating:"
               )}
             </p>
+
             <span className="block sm:hidden text-2xl font-bold text-green-600">
-              {profileData?.safetyRating || "0%"}
+              {profileData?.status === "Approved" ? "75%" : "0%"}
             </span>
-            <div className="w-[7rem] h-[7rem] font-bold hidden sm:block ">
+
+            <div className="w-[7rem] h-[7rem] font-bold hidden sm:block">
               {loading || error ? (
                 <Skeleton circle={true} height={115} width={115} />
               ) : (
                 <CircularProgressbar
-                  value={profileData?.safetyRating || 0}
-                  text={`${profileData?.safetyRating || "0"}%`}
+                  value={profileData?.status === "Approved" ? 75 : 0}
+                  text={`${profileData?.status === "Approved" ? "75" : "0"}%`}
                   styles={buildStyles({
                     pathColor: "#7ed957",
                     textColor: "black",
@@ -266,7 +306,7 @@ const Profile = () => {
 
         {/* New Details Section */}
 
-        <div className="w-full max-w-4xl bg-[#00bf63] text-white p-6 rounded-2xl mb-6">
+        <div className="w-full max-w-4xl bg-[#00bf63] text-white p-6 rounded-2xl mb-2">
           {loading || error ? (
             <div className="h-6 w-20 bg-gray-300 rounded animate-pulse mb-4"></div>
           ) : (
@@ -302,7 +342,7 @@ const Profile = () => {
         </div>
 
         {/* Customer Service Section */}
-        <div className="w-full max-w-4xl bg-[#00bf63] text-white p-4 rounded-2xl mb-6 sm:px-8">
+        <div className="w-full max-w-4xl bg-[#00bf63] text-white p-4 rounded-2xl mb-2 sm:px-8">
           {loading || error ? (
             <>
               <Skeleton width={120} height={20} className="mb-4" />
@@ -364,7 +404,7 @@ const Profile = () => {
               onClick={handleNavigate}
               className="px-6 py-3 mb-4 bg-[#00bf63] text-white font-bold rounded-lg shadow-lg hover:bg-green-600"
             >
-              Go to Store
+              Back to Store
             </button>
           )}
         </div>

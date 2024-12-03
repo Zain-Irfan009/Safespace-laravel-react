@@ -16,12 +16,12 @@ const StatusForm = ({
   };
 
   return (
-    <div className="mb-8 inset-0 z-10 w-full">
+    <div className="mb-8 inset-0 z-10 w-full font-montserrat">
       <form
         className="mt-8 bg-white p-6 rounded-lg shadow-md"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-col sm:flex-col md:flex-row items-start flex-wrap justify-between mb-4 mt-4">
+        <div className="flex flex-col sm:flex-col md:flex-row items-start lg:items-center md:items-center sm:items-center  flex-wrap justify-between mb-4 mt-4">
           <h1 className="text-base sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-4 md:mb-0">
             Approved/Denied
           </h1>
@@ -57,7 +57,7 @@ const StatusForm = ({
           </div>
           <button
             type="submit"
-            className="bg-indigo-600 text-white py-2 px-4 rounded-md text-sm  md:text-base lg:text-lg"
+            className="bg-indigo-600 text-white text-sm  py-1 px-2  lg:py-2 lg:px-4 lg:text-base md:py-2 md:px-4 md:text-base sm:text-sm sm:py-1 sm:px-2 rounded-md"
           >
             {loading ? (
               <ClipLoader color={"#FFFFFF"} loading={loading} size={20} />

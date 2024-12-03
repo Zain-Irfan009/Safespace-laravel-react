@@ -8,7 +8,7 @@ export function Skeleton() {
           <Typography
             as="div"
             variant="button"
-            className="h-6 w-20 rounded bg-gray-300"
+            className="h-6 w-16 lg:w-20 md:w-20  rounded bg-gray-300"
           >
             &nbsp;
           </Typography>
