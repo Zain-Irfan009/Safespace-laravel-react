@@ -12,10 +12,13 @@
 // };
 
 // export default ProtectedRoute;
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-
-const ProtectedRoute = ({ isAuthenticated, children }) => {
+import { AuthContext } from "../Context/AuthContext";
+const ProtectedRoute = ({ children }) => {
+  const { token } = useContext(AuthContext);
+  const isAuthenticated = token ? true : false;
+  console.log("isAuthenticated in login", isAuthenticated);
   return isAuthenticated ? children : <Navigate to="/admin/login" replace />;
 };
 
