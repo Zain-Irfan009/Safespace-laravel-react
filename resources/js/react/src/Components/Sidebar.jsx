@@ -5,7 +5,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const Sidebar = ({
-  stores,
+  stores =[],
   searchTerm,
   setSearchTerm,
   loading,
