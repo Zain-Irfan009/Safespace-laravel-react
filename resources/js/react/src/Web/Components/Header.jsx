@@ -44,13 +44,13 @@ const Header = () => {
         className="w-full max-w-[1540px] mx-auto flex items-center justify-between p-4 sm:p-6 md:px-8 lg:px-12"
       >
         {/* Logo Section */}
-        <div className="flex flex-1  justify-start  lg:justify-start min-w-28">
+        <div className="flex flex-1  justify-start  lg:justify-start min-w-[119px]">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
               alt="logo"
               src={logo}
-              className="h-16 w-auto sm:h-16 lg:h-16 object-cover"
+              className="h-[60px] w-auto sm:h-[60px] lg:h-16 object-cover"
             />
           </Link>
         </div>

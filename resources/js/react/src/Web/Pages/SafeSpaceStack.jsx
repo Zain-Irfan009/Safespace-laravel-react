@@ -53,7 +53,7 @@ const SafeSpaceStack = () => {
         <Card className={"   !rounded-3xl  "}>
           <div className=" mx-auto  px-6 sm:mt-0  lg:px-12 xl:my-6 ">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div className="flex flex-col md:flex-row  items-center lg:gap-10 justify-start sm:mb-4 lg:mb-2 mb-4">
+              <div className="flex flex-col md:flex-row  items-center lg:gap-10 justify-start sm:mb-4 lg:my-2 mb-4">
                 <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl sm:mt-4 mt-4 lg:mt-0">
                   The SafeSpace Stack - Why it works.
                 </h2>
@@ -94,7 +94,7 @@ const SafeSpaceStack = () => {
         <Card className={"mt-6   !rounded-3xl"}>
           <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div className="mt-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
+              <div className="my-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                   <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                     The Badge
@@ -130,7 +130,7 @@ const SafeSpaceStack = () => {
         <Card className={"mt-6   !rounded-3xl"}>
           <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div className="mt-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
+              <div className="my-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                   <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                     Customer Prompted Pop Up
@@ -163,7 +163,7 @@ const SafeSpaceStack = () => {
         <Card className={"mt-6 !rounded-3xl"}>
           <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <div className="mt-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
+              <div className="my-4 flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
                 {/* Content Section */}
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
                   <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
@@ -197,14 +197,14 @@ const SafeSpaceStack = () => {
         </Card>
 
         <Card className={"mt-6  !rounded-3xl "}>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-              <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6  lg:my-6">
+            <div className="lg:w-full lg:max-w-2xl lg:flex-auto sm:mt-6 mt-6 lg:mt-0 ">
+              <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  ">
                 A Deep Dive into the Verification process
               </h2>
 
               <div className="lg:w-full lg:max-w-full lg:flex-auto">
-                <p className="mt-4 max-w-full text-base/7 text-black">
+                <p className="my-4 max-w-full text-base/7 text-black">
                   At SafeSpace, trust is at the core of what we do. Our
                   comprehensive verification process is meticulously designed to
                   ensure that every SafeSpace-compliant merchant meets the
@@ -218,14 +218,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div>
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Product Delivery Verification:
               </h2>
               <div className=" flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                  <p className="mt-4 max-w-full text-base/7 text-black">
+                  <p className="my-4 max-w-full text-base/7 text-black">
                     SafeSpace strengthens customer trust by thoroughly verifying
                     a random sample of a merchant’s past deliveries. We
                     meticulously check tracking numbers and shipment
@@ -252,14 +252,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Secure Payment Gateways:
               </h2>
 
               <div className="lg:w-full lg:max-w-full lg:flex-auto">
-                <p className="mt-4 max-w-full text-base/7 text-black">
+                <p className="my-4 max-w-full text-base/7 text-black">
                   All SafeSpace-verified merchants are required to use secure,
                   PCI DSS-compliant payment gateways, ensuring the secure
                   processing of customers' payment data in line with industry
@@ -274,14 +274,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Customer Service Contact Information:
               </h2>
               <div className="flex flex-col gap-x-8 gap-y-6 lg:gap-y-20  lg:flex-row">
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                  <p className="mt-4 max-w-full text-base/7 text-black">
+                  <p className="my-4 max-w-full text-base/7 text-black">
                     To further enhance trust, SafeSpace mandates that all
                     merchants provide valid and accessible contact information
                     for customer service inquiries, including phone numbers,
@@ -307,14 +307,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Business Registration Verification:
               </h2>
 
               <div className="lg:w-full lg:max-w-full lg:flex-auto">
-                <p className="mt-4 max-w-full text-base/7 text-black">
+                <p className="my-4 max-w-full text-base/7 text-black">
                   To confirm the legitimacy of each business, SafeSpace verifies
                   that merchants are properly registered with their respective
                   local or national authorities by requiring valid business
@@ -331,14 +331,14 @@ const SafeSpaceStack = () => {
             </div>
           </div>
 
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 SSL/TLS Encryption:
               </h2>
               <div className=" flex flex-col gap-x-8 gap-y-6 lg:gap-y-20 lg:flex-row">
                 <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                  <p className="mt-4 max-w-full text-base/7 text-black">
+                  <p className="my-4 max-w-full text-base/7 text-black">
                     To protect customer data during transactions, every
                     SafeSpace-compliant store must have SSL/TLS encryption
                     enabled. We verify that the website uses HTTPS to secure all
@@ -364,14 +364,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Domain Registration:
               </h2>
 
               <div className="lg:w-full lg:max-w-full lg:flex-auto">
-                <p className="mt-4 max-w-full text-base/7 text-black">
+                <p className="my-4 max-w-full text-base/7 text-black">
                   A key aspect of our verification process is ensuring that the
                   domain registration information is accurate and transparent.
                   We verify that the store’s domain is registered with a
@@ -387,14 +387,14 @@ const SafeSpaceStack = () => {
               </div>
             </div>
           </div>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-xl lg:text-2xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Return Policy & Refund Rates:
               </h2>
 
               <div className="lg:w-full lg:max-w-full lg:flex-auto">
-                <p className="mt-4 max-w-full text-base/7 text-black">
+                <p className="my-4 max-w-full text-base/7 text-black">
                   Finally, we require merchants to have a clear, fair, and
                   easily accessible return policy that outlines specific
                   guidelines for returning items, applicable conditions, and
@@ -424,7 +424,7 @@ const SafeSpaceStack = () => {
           </div>
         </Card>
         <Card className={"mt-6  !rounded-3xl mb-6"}>
-          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6">
+          <div className="mx-auto px-6 sm:mt-0 lg:px-12 xl:my-6 lg:my-6">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <h2 className="text-pretty text-2xl lg:text-4xl font-semibold tracking-tight text-black sm:text-2xl  sm:mt-4 mt-4 lg:mt-0">
                 Frequently asked questions

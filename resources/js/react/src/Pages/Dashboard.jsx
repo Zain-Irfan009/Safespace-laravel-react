@@ -33,7 +33,7 @@ const Dashboard = () => {
   // If data is still loading or there's an error, display loading state
   if (loading) {
     return (
-      <div className="flex flex-col mb-8 mt-8 mx-10">
+      <div className="flex flex-col mb-8 mt-8 mx-10 font-montserrat">
         {/* Skeleton Loader for Header */}
         <h1 className="text-base font-bold text-gray-900 sm:text-xl md:text-2xl lg:text-2xl mb-4 ">
           <div className="h-10 w-[200px] bg-gray-300 rounded-lg animate-pulse" />
@@ -115,7 +115,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex flex-col mb-8 mt-8 mx-10">
+    <div className="flex flex-col mb-8 mt-8 mx-10 font-montserrat">
       {/* Header Section */}
       <h1 className="text-xl font-bold text-gray-900 sm:text-xl md:text-2xl lg:text-2xl mb-4 ">
         Dashboard
@@ -124,7 +124,7 @@ const Dashboard = () => {
       {/* Cards Section */}
       <ul
         role="list"
-        className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
+        className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 "
       >
         {projects.map((project) => (
           <li
@@ -143,7 +143,7 @@ const Dashboard = () => {
               <div className="flex-1 truncate px-4 py-2 text-sm">
                 <a
                   href={project.href}
-                  className="font-medium text-gray-900 hover:text-gray-600"
+                  className="font-semibold text-gray-900 hover:text-gray-600"
                 >
                   {project.name}
                 </a>

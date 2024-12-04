@@ -26,8 +26,8 @@ const Home = () => {
             className="h-full w-full max-h-[350px] md:max-h-[450px] sm:max-h-[450px] lg:max-h-[600px] xl:max-h-[700px] top-0 left-0 rounded-3xl object-cover absolute"
           />
           <div className="w-full max-w-[1540px] mx-auto flex p-6 min-h-[22rem] lg:min-h-[37rem] xl:min-h-[40rem] sm:min-h-[22rem] relative z-10">
-            <div className="max-w-md items-start content-center">
-              <Card className={"!rounded-3xl !px-6 "}>
+            <div className="max-w-md items-start content-end lg:content-center md:content-center sm:content-end  ">
+              <Card className="!rounded-3xl !px-6  max-w-[250px] sm:max-w-[400px] md:max-w-[800px] lg:max-w-full ">
                 <div className="lg:py-2 md:py-2 sm:py-2 flex flex-col">
                   <h1 className="text-2xl font-bold text-gray-900">
                     Trust Matters
@@ -81,16 +81,14 @@ const Home = () => {
       <Card className="!bg-[#f6f0a6] !rounded-3xl lg:mx-6 md:mx-4 sm:mx-4 mx-4 mb-6 md:px-1 md:py-2">
         <div className="w-full max-w-[1540px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 text-sm md:gap-2">
           {/* First SVG Container */}
-          <div className="p-4 mx-2 flex flex-col items-center md:p-2">
+          <div className="p-4 mx-2 flex flex-col items-center">
             <img
               src={safe}
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2">
-              <span>Keep customers safe from</span>
-              <span className="block">unsafe online stores &</span>
-              <span className="block">websites</span>
+            <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
+              Keep customers safe from unsafe online stores & websites
             </p>
           </div>
 
@@ -101,10 +99,10 @@ const Home = () => {
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2">
-              <span>Helping legitimate e-commerce</span>
-              <span className="block">stores boost conversion rates &</span>
-              <span className="block">grow revenue.</span>
+
+            <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
+              Helping legitimate e-commerce stores boost conversion rates & grow
+              revenue
             </p>
           </div>
 
@@ -115,10 +113,9 @@ const Home = () => {
               alt=""
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
-            <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2">
-              <span>Ensuring businesses deliver product</span>
-              <span className="block">and bringing transparency to</span>
-              <span className="block">shipping times.</span>
+            <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
+              Ensuring businesses deliver products block"and bringing
+              transparency to shipping times.
             </p>
           </div>
         </div>

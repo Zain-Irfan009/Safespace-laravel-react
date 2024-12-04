@@ -10,9 +10,7 @@ const Footer = () => {
       { name: "Get Verified", href: "/applyforverification" },
     ],
     "Contact Us": [
-      { name: "Application Inquiries", href: "" },
-      { name: "General Inquiries", href: "" },
-      { name: "Reports", href: "" },
+      { name: "info@safespacego.com", href: "mailto:info@safespacego.com" },
     ],
   };
   const location = useLocation();
