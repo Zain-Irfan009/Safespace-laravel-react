@@ -51,7 +51,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4 h-full items-stretch">
+      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4  items-stretch">
         {/* Left container with image */}
         <div className="flex-1 sm:pt-4 lg:py-4 md:pt-4 pt-0 pb-0 aspect-[10/6] w-full h-none">
           <img
