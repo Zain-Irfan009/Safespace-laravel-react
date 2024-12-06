@@ -51,7 +51,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4  items-stretch">
+      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4 items-stretch">
         {/* Left container with image */}
         <div className="flex-1 sm:pt-4 lg:py-4 md:pt-4 pt-0 pb-0 aspect-[10/6] w-full h-none">
           <img
@@ -63,13 +63,13 @@ const Home = () => {
         </div>
 
         {/* Right container with text and overlay */}
-        <div className="relative flex-1 lg:py-4 md:py-4 py-4">
-          <div className="relative flex flex-col justify-center rounded-3xl overflow-hidden bg-white lg:py-7 h-full">
+        <div className="relative flex-1 lg:py-4 md:py-4 py-4 flex">
+          <div className="relative flex flex-col justify-center rounded-3xl overflow-hidden bg-white lg:py-7 h-full w-full">
             <img
               src={Shopify1}
               alt="Shopify logo"
               loading="lazy"
-              className="rounded-3xl absolute  object-cover lg:px-12 md:px-10 sm:px-10 px-10"
+              className="rounded-3xl absolute  object-contain lg:px-12 md:px-10 sm:px-10 px-8  lg:h-auto md:h-auto sm:h-[400px] h-[350px]"
             />
             <div className="relative z-10 flex flex-col items-center justify-start h-full lg:mt-12 md:mt-16 sm:mt-16 mt-6  ">
               <p className="text-xs lg:text-sm md:text-sm sm:text-xs  text-center text-gray-400 font-normal">
