@@ -135,7 +135,7 @@ const BusinessDirectory = () => {
             Business Directory:
           </h2>
           <p className="text-sm mt-4">
-            Search our business directory from merchant profiles.
+            Search our business directory for merchant profiles.
           </p>
           <div className="mt-12">
             <label
@@ -155,7 +155,7 @@ const BusinessDirectory = () => {
                   setUrl(e.target.value);
                   setError("");
                 }}
-                className={`block w-full sm:w-[32%] md:w-1/2 lg:w-[20%] text-sm rounded-lg border-0 py-2 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 sm:text-sm ${
+                className={`block w-full sm:w-[32%] md:w-1/2 lg:w-[20%] text-base rounded-lg border-0 py-2 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 ${
                   error ? "ring-red-500 focus:ring-red-500" : ""
                 }`}
               />

@@ -27,7 +27,7 @@ const ApplyForVerifecation = () => {
                 loading="lazy"
                 className="max-w-[10rem] sm:max-w-[10rem] lg:ml-9 md:ml-9 h-auto"
               />
-              <Button className="!bg-[#5ab453] hover:bg-green-600 !text-black font-semibold !text-sm py-2 !px-8 rounded-full inline-flex items-center">
+              <Button className="!bg-[#5ab453] hover:bg-green-600 !text-black font-normal sm:font-normal lg:font-semibold md:font-semibold !text-sm py-2 !px-8 rounded-full inline-flex items-center">
                 Apply through Shopify
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

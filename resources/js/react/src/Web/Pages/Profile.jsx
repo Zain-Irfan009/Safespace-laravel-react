@@ -8,6 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { AuthContext } from "../../Context/AuthContext";
 import { useParams, useNavigate } from "react-router-dom";
 import Card from "../Components/Card";
+
 const Profile = () => {
   const params = useParams();
   const [profileData, setProfileData] = useState(null);
@@ -16,6 +17,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [lastVisitedUrl, setLastVisitedUrl] = useState("");
   useEffect(() => {
     const fetchProfileData = async () => {
       setLoading(true);
@@ -52,6 +54,21 @@ const Profile = () => {
 
     fetchProfileData();
   }, [token, params.shop]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const visitedUrl = urlParams.get("lastVisitedUrl");
+    if (visitedUrl) {
+      setLastVisitedUrl(decodeURIComponent(visitedUrl));
+      urlParams.delete("lastVisitedUrl");
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+      window.history.replaceState(
+        null,
+        "",
+        newUrl.endsWith("?") ? newUrl.slice(0, -1) : newUrl
+      );
+    }
+  }, []);
   if (error) {
     return (
       <div className="bg-gradient-to-r from-[#018ba3] to-[#008d49] font-montserrat">
@@ -81,10 +98,15 @@ const Profile = () => {
   }
 
   const handleNavigate = () => {
-    if (profileData && profileData.store_name) {
-      const url = `https://${profileData.store_name}/password`;
-      window.open(url, "_blank", "noopener,noreferrer");
+    let url; // Declare the url variable outside the if/else block
+
+    if (lastVisitedUrl) {
+      url = lastVisitedUrl; // Assign lastVisitedUrl if available
+    } else {
+      url = "https://safespacego.com/businessdirectory"; // Default URL if lastVisitedUrl is not available
     }
+
+    window.location.href = url;
   };
 
   const checklistItems = [

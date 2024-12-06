@@ -4,14 +4,15 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Card from "../Components/Card";
 import Button from "../Components/Button";
-import h1 from "../../assets/Images/h1.png";
-import Shopify1 from "../../assets/Images/Shopify1.png";
+// import h1 from "../../assets/Images/h1.png";
+// import Shopify1 from "../../assets/Images/Shopify1.png";
 import safe from "../../assets/Images/safe.png";
 import cart from "../../assets/Images/cart.png";
 import ship from "../../assets/Images/ship.png";
+import { bg, h1, Shopify1 } from "../../assets/imageData";
 
 // import Shopify from "../../assets/Images/Shopify.png";
-import bg from "../../assets/Images/bg.png";
+// import bg from "../../assets/Images/bg.png";
 
 const Home = () => {
   return (
@@ -50,9 +51,9 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4">
+      <div className="w-full grid lg:grid-rows-none  lg:grid-cols-2 grid-rows-2  max-w-[1600px] mx-auto  rounded-lg  overflow-hidden gap-0 md:gap-0  lg:gap-8 px-4 sm:px-4 lg:py-4 lg:px-6 md:px-4 h-full items-stretch">
         {/* Left container with image */}
-        <div className="flex-1 sm:pt-4 lg:py-4 md:pt-4 pt-0 pb-0">
+        <div className="flex-1 sm:pt-4 lg:py-4 md:pt-4 pt-0 pb-0 aspect-[10/6] w-full h-none">
           <img
             src={h1}
             alt="Person using a tablet"
@@ -114,7 +115,7 @@ const Home = () => {
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
             <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
-              Ensuring businesses deliver products block"and bringing
+              Ensuring businesses deliver products block and bringing
               transparency to shipping times.
             </p>
           </div>
