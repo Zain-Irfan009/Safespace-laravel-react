@@ -89,7 +89,7 @@ const Home = () => {
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
             <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
-              Keep customers safe from unsafe online stores & websites
+              Keep customers safe from unsafe online stores & websites.
             </p>
           </div>
 
@@ -103,7 +103,7 @@ const Home = () => {
 
             <p className="text-center text-xs leading-3 sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
               Helping legitimate e-commerce stores boost conversion rates & grow
-              revenue
+              revenue.
             </p>
           </div>
 
@@ -115,8 +115,8 @@ const Home = () => {
               className="w-18 h-16 md:w-24 md:h-24 lg:w-24 lg:h-24 object-contain"
             />
             <p className="text-center leading-3 text-xs sm:text-sm lg:text-base md:text-base mt-2 max-w-32 lg:max-w-64 md:max-w-64">
-              Ensuring businesses deliver products block and bringing
-              transparency to shipping times.
+              Ensuring businesses deliver product and bringing transparency to
+              shipping times.
             </p>
           </div>
         </div>

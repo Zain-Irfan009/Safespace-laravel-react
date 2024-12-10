@@ -418,19 +418,20 @@ const Profile = () => {
         </div>
 
         {/* Back to Store Button */}
-        <div>
-          {loading || error ? (
-            <Skeleton width={150} height={40} className="mb-4 rounded-lg" />
-          ) : (
-            <button
-              onClick={handleNavigate}
-              className="px-6 py-3 mb-4 bg-[#00bf63] text-white font-bold rounded-lg shadow-lg hover:bg-green-600"
-            >
-              Back to Store
-            </button>
-          )}
-        </div>
       </div>
+      <div className="flex justify-center">
+        {loading || error ? (
+          <Skeleton width={150} height={40} className="mb-4 rounded-lg " />
+        ) : (
+          <button
+            onClick={handleNavigate}
+            className="px-6 py-3 mb-4 bg-[#00bf63] text-white font-bold rounded-lg shadow-lg hover:bg-green-600  sticky top-4"
+          >
+            Back to Store
+          </button>
+        )}
+      </div>
+
       <Footer />
     </div>
   );

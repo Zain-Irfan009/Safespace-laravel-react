@@ -47,29 +47,37 @@ const ApplyForVerifecation = () => {
             </div>
 
             {/* WooCommerce and BigCommerce */}
-            <div className="flex flex-col sm:flex-row sm:gap-16 items-center sm:items-start ">
-              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8 ">
+            <div className="flex flex-col sm:flex-row sm:gap-16 items-center sm:items-start">
+              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8">
                 <img
                   src={woo}
                   alt="WooCommerce"
                   loading="lazy"
-                  className="max-w-[10rem] sm:max-w-[10rem]  h-auto"
+                  className="max-w-[10rem] sm:max-w-[10rem] h-auto"
                 />
-                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 !px-20 rounded-full inline-flex items-center">
-                  Coming soon
-                </Button>
+                <div className="flex gap-4">
+                  {" "}
+                  {/* Added this wrapper to make buttons inline */}
+                  <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-normal sm:font-normal lg:font-semibold md:font-semibold !text-sm py-2 !px-16 rounded-full inline-flex items-center">
+                    Coming soon
+                  </Button>
+                </div>
               </div>
 
-              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8 ">
+              <div className="flex justify-center items-center flex-col text-center space-y-6 sm:space-y-9 lg:mb-16 mb-8">
                 <img
                   src={big}
                   alt="BigCommerce"
                   loading="lazy"
-                  className=" max-w-[10rem] sm:max-w-[10rem]  h-auto"
+                  className="max-w-[10rem] sm:max-w-[10rem] h-auto"
                 />
-                <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-semibold !text-sm py-2 !px-20 rounded-full inline-flex items-center">
-                  Coming soon
-                </Button>
+                <div className="flex gap-4">
+                  {" "}
+                  {/* Added this wrapper to make buttons inline */}
+                  <Button className="!bg-[#e5e854] hover:bg-[#ebee4f] !text-black font-normal sm:font-normal lg:font-semibold md:font-semibold lg:mt-1 !text-sm py-2 !px-16 rounded-full inline-flex items-center">
+                    Coming soon
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
